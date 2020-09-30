@@ -1295,7 +1295,7 @@ query | value
 sensor (optional)| list of sensors you want to get the value off  
 
 
-## Set Device Mode  \
+## Set Device Mode  
   
 
 > ### Headers  
@@ -1609,7 +1609,7 @@ ssid_password | the password of the wi-fi
     
 ### HTTP REQUEST
 `
-POST
+PUT
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/setCredentials
 ` 
 
