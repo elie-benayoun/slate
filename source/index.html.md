@@ -40,14 +40,18 @@ Please contact our customer service team to sign up for a developer key and begi
 
 # Locations
 ## Add a Location
-To create a location you will need the following keys:
+To create a location you will need the following keys:  
+
+
 key | value 
 ----|------
 adress |(string)
 city |(string)
 name |(string)
 state |(string)
-zipcode |(string)
+zipcode |(string)  
+
+
 *****
  needs an APi keys  
  two locations can't have the same name  
@@ -61,7 +65,9 @@ https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations
 
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
+
 ### Body
 
 ```json
@@ -100,10 +106,12 @@ needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 ### Headers
 ```json
   {
@@ -177,6 +185,7 @@ orgId | your organization Id
 ## Get a Specific Location
 get a specific location under organization  
 minimum data obtained :  
+
 key | value
 ----|------
 _id |(unique string)
@@ -188,7 +197,8 @@ lattitude and longitude |(float numbers)
 name |(unique string among locations)
 state |(string)
 zipcode |(string)
-components|(object more informations on the location)
+components|(object more informations on the location)  
+
 
 ******
 Needs an API key
@@ -196,11 +206,13 @@ Needs an API key
 GET
 ```https
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-locationId | The location Id you want to get
+locationId | The location Id you want to get  
+
 
 ### Headers
 ```json
@@ -245,26 +257,33 @@ locationId | The location Id you want to get
 ## Update a Specific Location
 update a specific key of a specific location under organization:  
 If you want to update the adress , you will have also to pass the city , the state and the zipcode  
-Meaning you can pass 3 differents objects with the following keys :
- * First Object :
+Meaning you can pass 3 differents objects with the following keys :  
+
+* First Object :  
+
     key | value
     ----|------
     adress |(string)
     city |(string)
     name |(unique string among locations)
     zipcode |(string)
-    state |(string)
- * Second Object :
+    state |(string)  
+
+* Second Object :  
+
     key | value
     ----|------
     adress |(string)
     city |(string)
     zipcode |(string)
-    state |(string)
- * Third Object :
+    state |(string)  
+
+* Third Object :  
+
       key | value
       ----|------
-      name| (unique string among locations)
+      name| (unique string among locations)  
+
 
 Note that two locations can not have the same name and cannot be the same  
 *****
@@ -273,11 +292,13 @@ needs an API key
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-locationId | the location Id you want to update
+locationId | the location Id you want to update  
+
 
 ### Headers
 ```json
@@ -312,18 +333,20 @@ locationId | the location Id you want to update
 delete a location by his Id  
 you must be the owner of the location   
 all the devices that had this locationId will take the value null 
-> **WARNING** Deleting a location will also delete all the groups and floors that had this locationId , all the devices and rule will became floating with null value for floorId , groupId , locationId and all the rules will still exist but they will no longer be linked to any group , so to any devices
+<aside class="warning"> Deleting a location will also delete all the groups and floors that had this locationId , all the devices and rule will became floating with null value for floorId , groupId , locationId and all the rules will still exist but they will no longer be linked to any group , so to any devices </aside>
 *****
 needs an API key
-### HTTP REQUEST
+### HTTP REQUEST  
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-locationId | the location Id you want to Delete
+locationId | the location Id you want to Delete  
+
 
 ### Headers
 ```json
@@ -348,28 +371,33 @@ locationId | the location Id you want to Delete
 # Floors
 ## Add a Floor
 Give the ability to create a floor  
-data needed : 
+data needed :  
+
 key | value
 ----|------ 
 name |(must be unique aong the floors)
 locationId |(must exists under your organization)
-reminderDay |(a number representing the day of the month when you want a reminder to clean the prefilter it must be 1,5,10 or 15)
+reminderDay |(a number representing the day of the month when you want a reminder to clean the prefilter it must be 1,5,10 or 15)  
+
   
   
   
 Note that you can't create two same floors under the same organizaition  
 Two floors can not have the same name
-> **WARNING** You will not be able to change the location of the floor later so becareful
+<aside class="warning"> You will not be able to change the location of the floor later so becareful  </aside>
+
 *****
 needs an API key
 ### HTTP REQUEST
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -406,10 +434,12 @@ needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -446,7 +476,8 @@ orgId | your organization Id
   
 ## Get a Specific Floor
 Get a floor by his Id  
-the received object will have the folowing keys :
+the received object will have the folowing keys :  
+
 key | value
 ----|------
 _id | string , the id of the floor 
@@ -454,18 +485,21 @@ created_at | ISO string date , date of creation of the floor
 last_modified | ISO string date , last update of the floor
 locationId | unique string , the location of the floor
 name |  string , unique among floor under the sane location
-reminderDay | integer , day of the month to clean the pre_filter of the devices , can be 1 , 5 , 10 or 15
+reminderDay | integer , day of the month to clean the pre_filter of the devices , can be 1 , 5 , 10 or 15  
+
 *****
 needs an API key
 ### HTTP REQUEST
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-floorId | the floor Id you want to update
+floorId | the floor Id you want to update  
+
 ### Headers
 ```json
   {
@@ -492,10 +526,12 @@ floorId | the floor Id you want to update
 ## Update a Specific Floor
 Update keys of a floor under a specific organization:  
 the keys you can update are :  
+
 key | value
 ----|------
 name |(must be unique among the floors)
-reminderDay |(a number representing the day of the month when you want a reminder to clean the prefilter it must be 1,5,10 or 15)
+reminderDay |(a number representing the day of the month when you want a reminder to clean the prefilter it must be 1,5,10 or 15)  
+
 
 Note that two floors can not have the same name
 *****
@@ -504,11 +540,13 @@ needs an API key
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-floorId | the floor Id you want to update
+floorId | the floor Id you want to update  
+
 ### Headers
 ```json
   {
@@ -542,11 +580,13 @@ Needs an APi key
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-floorId | the floor Id you want to delete
+floorId | the floor Id you want to delete  
+
 
 ### Headers
 ```json
@@ -568,25 +608,30 @@ floorId | the floor Id you want to delete
 # Groups
 ## Add a Group
 Give the ability to create a new group  
-Data needed :  
+Data needed :   
+
 key | value
 ----|------
 locationId |(string relative to an existing location in your organization)
-name |(unique string among the groups)
+name |(unique string among the groups)  
+
 
 Note that the locationId used must be under your organization  
 two groups can not have the same name
-> **WARNING** You will not be able to update the locationId of a group later so becareful
+<aside class="warning"> You will not be able to update the locationId of a group later so becareful  </aside>
+
 *****
 Needs an API key
 ### HTTP REQUEST
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -624,10 +669,12 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -669,13 +716,15 @@ orgId | your organization Id
 ## Get a Specific Group
 Get a single group by his Id under tour organization  
 Data obtained :  
+
 key | value
 ----|------
 _id |(a unique string)
 created_at |(ISO string date)
 last_modified |(ISO string date)
 locationId |(string , unique , related to a specific location of your organization)
-name |(unique string among your groups)
+name |(unique string among your groups)  
+
 
 Note that the group must be under your organization (created by it) if you want to access it
 
@@ -685,11 +734,13 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-groupId | the group Id you want to get
+groupId | the group Id you want to get  
+
 
 ### Headers
 ```json
@@ -715,9 +766,11 @@ groupId | the group Id you want to get
 ## Update a Specific Group
 Update keys of a single group  
 Key to update:  
+
 key | value
 ----|------
-name |(unique string among groups)
+name |(unique string among groups)  
+
 
 
 *****
@@ -726,11 +779,13 @@ Needs an API key
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-groupId | the groupId you want to update
+groupId | the groupId you want to update  
+
 
 ### Headers
 ```json
@@ -769,11 +824,13 @@ Needs an API key
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}/rules
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-groupId | the group Id you want to remove the rule
+groupId | the group Id you want to remove the rule  
+
 
 ### Headers
 ```json
@@ -796,19 +853,23 @@ groupId | the group Id you want to remove the rule
 
 ## Delete a Specific Group
 Give the ability to delete a group by his Id  
-Note that all the devices that had this group will now  have a value **null** to the key grouId
-> If a rule was linked to this group all the devices that were linked to this group will now have the value null for ruleId  
+Note that all the devices that had this group will now  have a value **null** to the key grouId  
+
+<aside class="warning"> If a rule was linked to this group all the devices that were linked to this group will now have the value null for ruleId  </aside>
+
 ******
 Needs an API key
 ### HTTP REQUEST
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-groupId | the group Id you want to delete
+groupId | the group Id you want to delete  
+
 
 ### Headers
 ```json
@@ -834,7 +895,8 @@ groupId | the group Id you want to delete
 ## Get All Devices
 
 Retrieve a list of devices object under your organization  
-If you want more details on the device object go to the *get  a single devide by ID* endpoints
+If you want more details on the device object go to the *get  a single devide by ID* endpoints  
+
 
 *****
 Needs an API  key
@@ -842,10 +904,12 @@ Needs an API  key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -887,6 +951,7 @@ orgId | your organization Id
 
 Get a single device by it ID  
 Data obtained :  
+
 key|value
 ---|----- 
  _id| (unique string)
@@ -897,7 +962,8 @@ groupId| (The string id of an existing group of your organization)
 last_modified |(ISO string)
 locationId |(The string id of an existing location of your organization)
 room |(similar to a name , except it is not unique)
-ruleId | optional , string , the rule that is link to the group of the device 
+ruleId | optional , string , the rule that is link to the group of the device  
+
 
 *****
 Needs an API key
@@ -905,11 +971,13 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices/{{deviceId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device id you want to get
+deviceId | the device id you want to get  
+
 
 ### Headers
 ```json
@@ -937,7 +1005,8 @@ deviceId | the device id you want to get
 ## Update a Specific Device
 
 Update keys of a device :  
-Here is a list of the keys you can update :
+Here is a list of the keys you can update :  
+
 key | value
 ----|------  
 floorId |(unique string of a floor that must be under your organization)
@@ -945,14 +1014,16 @@ groupId |(unique string of a group that must be under your organization)
 locationId |(unique string of a location that must be under your organization)
 room |(a string same as a namen , except two device can have tha same room under your organization)  
 
-Note that :
- * The floorId and the groupId must always be under the same location than the device unless floorId and groupId are null
- * In such case , if you want to update the locationId of a device you will need to update also the floorId and the groupid of the device unless they are already null
- * You can update the floorId and the groupId to null 
- * If you update a locationId to null , you will not be able to update the floorId or the groupId , but only the room at the same time
- * When you put a locationId to null , the groupId, the floorId and the ruleId (if the device have one) will be set to null
- * When you update the groupId of a device , the ruleId of this one will also change according to the rule link to the new group , if the new group is not link to any rule the ruleId value of the device will become **null**
- * If you delete the location link to this device  , the groupId , floorId , ruleId and locationId will also be set to null  
+
+Note that :  
+
+* The floorId and the groupId must always be under the same location than the device unless floorId and groupId are null  
+* In such case , if you want to update the locationId of a device you will need to update also the floorId and the groupid of thedevice unless they are already null  
+* You can update the floorId and the groupId to null   
+* If you update a locationId to null , you will not be able to update the floorId or the groupId , but only the room at the same time  
+* When you put a locationId to null , the groupId, the floorId and the ruleId (if the device have one) will be set to null  
+* When you update the groupId of a device , the ruleId of this one will also change according to the rule link to the new group , ifthe new group is not link to any rule the ruleId value of the device will become **null**  
+* If you delete the location link to this device  , the groupId , floorId , ruleId and locationId will also be set to null    
 
 *****
 Needs an API key
@@ -960,11 +1031,13 @@ Needs an API key
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices/{{deviceId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to update
+deviceId | the device Id you want to update  
+
 
 ### Headers
 ```json
@@ -996,7 +1069,8 @@ deviceId | the device Id you want to update
 ## Get Sensor Data of a specific Device
 
 Get the device sensor data at the actual moment by it id  
-Here is a list of sensor  
+Here is a list of sensor :  
+
 sensor | unit
 -------|-----
 AQI |(Air QUality index a value between 0 and 500  , better when it's less)
@@ -1006,7 +1080,8 @@ co |(carbon monoxyde ppm)
 humidity |(in percentage)
 temperature |(in °C)
 co2 |(in ppb)
-voc |(organic component in ppb)
+voc |(organic component in ppb)  
+
 
 You can pass a list of sensor (separated by a coma) in the query *sensor* to get only specific sensors  
 If you don't pass any query the server will sent you all the sensor informations
@@ -1016,15 +1091,19 @@ Needs an API key
 ```https
 GET
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/sensors
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to get the sensor
+deviceId | the device Id you want to get the sensor  
 
-query | value
+  
+
+query | value  
 ------|------
-sensor (optional)| list of sensors you want to get the value off
+sensor (optional)| list of sensors you want to get the value off  
+
 
 ### Headers
 ```json
@@ -1056,35 +1135,44 @@ sensor (optional)| list of sensors you want to get the value off
 
 ## Set Device Mode
 set device mode (call firmware setSystemMode):  
-the mode passed as a parameter can be 
- * booster
- * normal  
+the mode passed as a parameter can be  
 
-Normal mode will just stop the booster mode  
-About the booster mode , you will have to provide informations in the body about the start time and the end time  
-Your body should in such case have these keys :
+* booster
+* normal  
+
+Normal mode will just stop the booster mode   
+About the booster mode , you will have to provide informations in the body about the start time and the end time   
+Your body should in such case have these keys :  
+
 key | value 
 ----|------
 startTime | time hh:mm
-endTime | time hh:mm
+endTime | time hh:mm  
 
-the hours should be between 0 and 24 and the minutes should be between 0 and 59  
 
-Note that :
- * the start time must be before the end time 
- * the time of activity of the booster mode is calculated by slice of half an hour you have know that the time difference between the start time and the end time will be rounded tot  the nearest half an hour slice for the booster mode
+The hours should be between 0 and 24 and the minutes should be between 0 and 59  
+
+Note that :  
+
+* the start time must be before the end time 
+* the time of activity of the booster mode is calculated by slice of half an hour you have know that the time difference between the start time and the end time will be rounded tot  the nearest half an hour slice for the booster mode  
+
 *****
-Needs an API key
+
+Needs an API key  
+
 ### HTTP REQUEST
 ```https
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/mode/{{mode}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 deviceId | the device Id you want to get the sensor
-mode | the mode you want to set the device in (can be booster or normal)
+mode | the mode you want to set the device in (can be booster or normal)  
+
 
 
 ### Headers
@@ -1125,12 +1213,14 @@ Needs an API key
 ```https
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/timezone/{{timezone}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 deviceId | the device Id you want to get the sensor
-timezone | the mode you want to set the timezone in (can be an integer between -12 and 12)
+timezone | the mode you want to set the timezone in (can be an integer between -12 and 12)  
+
 
 
 ### Headers
@@ -1163,11 +1253,13 @@ Needs an API key
 ```https
 GET
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/EEPROMContent
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to get the EEPROM
+deviceId | the device Id you want to get the EEPROM  
+
 
 
 ### Headers
@@ -1211,11 +1303,13 @@ Needs an API key
 ```https
 GET
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/ssid
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to get the ssid
+deviceId | the device Id you want to get the ssid  
+
 
 
 ### Headers
@@ -1257,12 +1351,14 @@ Needs an API Key
 ```https
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/switchLed/{{state}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 deviceId | the device Id you want to change the led state
-state | the new state of the led (on or off)
+state | the new state of the led (on or off)  
+
 
 
 ### Headers
@@ -1286,22 +1382,26 @@ state | the new state of the led (on or off)
 ## Set device ssid
 
 Give you the ability to change the wi-fi of the device  
-In the body two keys are needed :
+In the body two keys are needed :  
+
 key| value
 ---|------
 ssid_name | a string that is the name of the wi-fi
-ssid_password | the password of the wi-fi  
+ssid_password | the password of the wi-fi   
+
   
   
 ### HTTP REQUEST
 ```https
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/setCredentials
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to change the ssid
+deviceId | the device Id you want to change the ssid  
+
 
 
 
@@ -1330,19 +1430,21 @@ deviceId | the device Id you want to change the ssid
 ## Add a Rule
 
 Give the ability to create a new rule  
-data to provided:
+data to provided:  
+
 key | value
 ----|------
 groupId |(unique string must be in your organization)
 name |(must be unique among the rules)
-margins |(must follow the same rule as said in the *update a single rule* endpoint endpoints and must contain at least active , min and max for one sensor)
+margins |(must follow the same rule as said in the *update a single rule* endpoint endpoints and must contain at least active , min and max for one sensor)  
+
   
 *****
 you can't create two same rule in the same organization 
-> If there are devices link to the group you created the rule for , all the devices will take the new rule id as the value of the key *ruleId*
+<aside class="warning"> If there are devices link to the group you created the rule for , all the devices will take the new rule id as the value of the key *ruleId* </aside>
 
 
-> You can not link two rules to the same group , if the groupId that you use is already linked to a rule you will receive an error message. You can use the *delete group's rule* endpoint as a solution
+<aside class="warning"> You can not link two rules to the same group , if the groupId that you use is already linked to a rule you will receive an error message. You can use the *delete group's rule* endpoint as a solution </aside>
 
 If you want to link or unlink a rule from a webhook use instaead the enpoint  *link or unlink a weebhook to rule* 
 *****
@@ -1352,10 +1454,12 @@ Need an API key
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -1430,10 +1534,12 @@ needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -1455,18 +1561,21 @@ orgId | your organization Id
         "-mkqfLFJILRHiyyzMVKMEAB"
     ]
 }
-```
+```  
+
 ## Get a Specific Rule
 
 get a specific rule by id :  
-data obtained :
+data obtained :  
+
 key | value
 ----|------
 _id |(unique string)
 groupId |(unique string  , reference to  an existing group of the company)
 margins |(object Go to *update  a single rule* endpoints for more details)
 name |(unique string among the rules)
-organizationId |(string)
+organizationId |(string)  
+
 
 *****
 Needs an API key
@@ -1474,11 +1583,13 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to get
+ruleId | the rule Id you want to get  
+
 
 ### Headers
 ```json
@@ -1537,14 +1648,17 @@ ruleId | the rule Id you want to get
 ## Update a Specific Rule
 
 Update a specific rule by id  
-Here is a list of the differents keys that you can update
+Here is a list of the differents keys that you can update :  
+
 key  | value
 -----|------  
- groupId |(unique string, identify a specific group of your organization)
- name |(unique string among rules)
- margins |(object)
-About the margins :  
-Each key in the margin object must be a valid sensor name , here is the list :
+groupId |(unique string, identify a specific group of your organization)
+name |(unique string among rules)
+margins |(object)  
+
+About the margins :    
+Each key in the margin object must be a valid sensor name , here is the list :  
+
 sensor | unit
 -------|-----
 co |ppm
@@ -1554,23 +1668,27 @@ pm10 |ug/m3
 pm25 |ug/m3
 temperature |°C
 voc |ppb
-aqi  |between 0 and 500 less is better
+aqi  |between 0 and 500 less is better  
+
   
   
 Each sensor in the margins object should have the folowing keys :  
+
 key | value
  ----|------
 min |(number minimum value)
 max |(number maximum value)
-active |(boolenan , do the rule will trigger on this sensor)   
+active |(boolenan , do the rule will trigger on this sensor)  
+
   
   
 Note that you need at least one sensor in the margin object  
 If you don't put a sensor , he will appear in the database with only the key active false inside it  
-You are able also to create a sesnor with only a key active false
+You are able also to create a sesnor with only a key active false  
 
 *****
-Note that :
+Note that :  
+
 * The groupId must be valid
 * two rules can't have the same name
 * updating the margins will just update the sensors you specify , for updating (rewrite) all the margins use the endpoints post margins instead
@@ -1581,11 +1699,13 @@ Note that :
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to update
+ruleId | the rule Id you want to update  
+
 
 ### Headers
 ```json
@@ -1620,27 +1740,34 @@ ruleId | the rule Id you want to update
 
 Give the ability to update a specific sensor from a specific rule:  
 Pass a s a parameter the sensor name , that must be one of the list of the *update a single rule* endpoint 
-In the body the server is waitinf for 3 keys :
+In the body the server is waitinf for 3 keys :  
+
 key | value
 ----|------
 active |(boolean : is the rule on this sensor will be active and will triger) 
 min |(integer , the minimum value of the sensor)  
-max |(integer , the maximum value of the sensor)
+max |(integer , the maximum value of the sensor)    
+
   
 
 ******
-Not that:  
- * Needs an API key
-### HTTP REQUEST
+Note that:  
+
+* Needs an API key  
+
+### HTTP REQUEST  
+
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/margin/{{sensor}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 ruleId | the rule Id you want to update
-sensor | the sensor name you want to update
+sensor | the sensor name you want to update  
+
 
 ### Headers
 ```json
@@ -1675,19 +1802,24 @@ sensor | the sensor name you want to update
 ## Rewrite margins of a specific rule
 Give the ability to rewrite the margins of a rule:  
 be carfeul:  
- * the sensor name should be present in the list showed on the *update a single rule* endpoint
- * all the others sensors margins of this rule will be deleted 
+
+* the sensor name should be present in the list showed on the *update a single rule* endpoint
+* all the others sensors margins of this rule will be deleted  
+
  ******
- Needs an API key
+Needs an API key  
+
 ### HTTP REQUEST
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/margins
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to rewrite the margins
+ruleId | the rule Id you want to rewrite the margins  
+
 
 ### Headers
 ```json
@@ -1725,16 +1857,19 @@ ruleId | the rule Id you want to rewrite the margins
 
 This endpoint remove all the webhooks from a given rule  
 In the rule object the webhooks ids list will be remove  
-Inside each webhook that was linked to the rule , the rule Id will be remove from the array of rules
+Inside each webhook that was linked to the rule , the rule Id will be remove from the array of rules  
+
 ### HTTP REQUEST
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to remove the webhooks
+ruleId | the rule Id you want to remove the webhooks  
+
 
 ### Headers
 ```json
@@ -1759,18 +1894,20 @@ ruleId | the rule Id you want to remove the webhooks
 remove ane existing rule by id 
 
 By removing this rule you also  remove all the rule ids in the rule arrays of the webhooks that were linked to this rule  
-> By removing the rule you also put all the ruleId inside the devices object that were linked to the group linked to this rule to null
+<aside class="warning"> By removing the rule you also put all the ruleId inside the devices object that were linked to the group linked to this rule to null </aside>
 *****
 need an API key
 ### HTTP REQUEST
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to delete
+ruleId | the rule Id you want to delete  
+
 
 ### Headers
 ```json
@@ -1801,10 +1938,12 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -1864,6 +2003,7 @@ orgId | your organization Id
 
 get a specific webhook by his id , only if the organization is the owner of this webhook  
 Data obtained:  
+
 key | value
 ----|------
 created_at| (ISO string)
@@ -1873,7 +2013,8 @@ last_modified |(ISO string)
 orgId |( string :the organizatio Id of the the organization that created this webhook)
 rules |(optional : an array of rules ids the webhook is linked to , if the webhook is not linked to any rule this array does 
 not exist)
-url |(string: the url to call)
+url |(string: the url to call)  
+
 
  *****
 
@@ -1883,11 +2024,14 @@ url |(string: the url to call)
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | The webhook Id you want to get
+webhookId | The webhook Id you want to get  
+
+
 
 ### Headers
 ```json
@@ -1917,7 +2061,7 @@ webhookId | The webhook Id you want to get
 ## Get list of webhooks linked to a rule
 
 Send back the list of rules link to a specific webhook  
-For more informations on the webhook object go to the *Get a specific webhook by id*  endpoint
+For more informations on the webhook object go to the *Get a specific webhook by id*  endpoint  
 
 *****
 Needs an API key
@@ -1926,11 +2070,13 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | The ruleId you want to get the webhooks of
+ruleId | The ruleId you want to get the webhooks of  
+
 
 ### Headers
 ```json
@@ -1976,21 +2122,27 @@ ruleId | The ruleId you want to get the webhooks of
 ## Get list of rules link to a specific webhook
 
 Send back the list of rules under a specific webhook  
-For more informations on the rule object go to the *Get a specific rule by id*  endpoint  
+For more informations on the rule object go to the *Get a specific rule by id*  endpoint    
 *****
-Note that :
+Note that :  
+
 * If there is no rules linked to this  webhook , the list will be empty 
-* Needs an API key
+* Needs an API key  
+
+*****
+Needs an API KEY
 
 ### HTTP REQUEST
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/rules
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | The webhook Id you want to get the rules of
+webhookId | The webhook Id you want to get the rules of  
+
 
 ### Headers
 ```json
@@ -2105,10 +2257,12 @@ Needs an API key
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -2141,7 +2295,7 @@ orgId | your organization Id
 
 ## link a webhook to a specific rule by id
 
-link a webhook to a specific rue by ids  
+Link a webhook to a specific rue by ids     
 Note that it will create a webhooks array in the rule object containing all the webhooks ids this rule is linked to  
 It will al so create a rule array inside the webhook object conatinig all the rule ids the webhook is linked to  
 *****
@@ -2151,12 +2305,14 @@ Needs an API key
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 ruleId | the rule you want to link to the webhook
-webhookId | the webhook you want to link to the rule
+webhookId | the webhook you want to link to the rule  
+
 ### Headers
 ```json
   {
@@ -2177,8 +2333,8 @@ webhookId | the webhook you want to link to the rule
 
 ## Enable / disable a webhook
 
-Enable or disable a webhook by passing as state on or off  
-A disabled webhook will not be called when the rules linked to it are broken
+Enable or disable a webhook by passing as state on or off    
+A disabled webhook will not be called when the rules linked to it are broken  
 
 ******
 Needs an API key
@@ -2187,12 +2343,14 @@ Needs an API key
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/{{state}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 webhookId | the webhook you want to enable/disable
-state | the updated state of a webhook , on for enable and off for disable
+state | the updated state of a webhook , on for enable and off for disable  
+
 
 ### Headers
 ```json
@@ -2212,7 +2370,7 @@ state | the updated state of a webhook , on for enable and off for disable
 ## Update a webhook
 
 Update the url of a specific webhook  
-The url must be passed in the body it will be the only key accepted
+The url must be passed in the body it will be the only key accepted  
 *****
 Needs an APi key
 
@@ -2220,11 +2378,13 @@ Needs an APi key
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | the webhook you want to update
+webhookId | the webhook you want to update  
+
 
 ### Headers
 ```json
@@ -2261,8 +2421,8 @@ webhookId | the webhook you want to update
 
 Unlink a webhook from a rule.  
 This rule will no longer trigger this webhook when it will be broken  
-The Webhook Id will be deleted for the webhooks arrays inside the rule specified
-The rule Id given will be deleted from the webhook`s rules array specified
+The Webhook Id will be deleted for the webhooks arrays inside the rule specified  
+The rule Id given will be deleted from the webhook`s rules array specified  
 
 *****
 Needs an API key
@@ -2271,12 +2431,14 @@ Needs an API key
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 webhookId | the webhook you want to unlink from the rule
-ruleId | the rule you want to unlink from the webhook
+ruleId | the rule you want to unlink from the webhook  
+
 
 ### Headers
 ```json
@@ -2299,7 +2461,7 @@ ruleId | the rule you want to unlink from the webhook
 ## Delete a webhook
 
 Delete a webhook from the webhook object on firebase  
-This webhook will also be deleted from all the webhooks lists in the rules he was linked too
+This webhook will also be deleted from all the webhooks lists in the rules he was linked too  
 
 *****
 Needs an API key
@@ -2308,11 +2470,13 @@ Needs an API key
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | the webhook you want to delete
+webhookId | the webhook you want to delete  
+
 
 ### Headers
 ```json
@@ -2333,7 +2497,8 @@ webhookId | the webhook you want to delete
 ## Get list of global webhooks
 
 Get the list of global webhooks specific to the organization  
-If you want more information on the webhook object got to the *get a specific global webhook by id* endpoint
+If you want more information on the webhook object got to the *get a specific global webhook by id* endpoint  
+
 
 *****
 Needs an API key
@@ -2341,10 +2506,12 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/global
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 
 ### Headers
@@ -2382,13 +2549,16 @@ orgId | your organization Id
 ## Get a specific global webhook by id
 
 Get a specific global webhook by his id , only if the organization is the owner of this global webhook  
-Data obtained:  
- * created_at (ISO string)
- * _id (unique string)
- * is_active (boolan , if it is to false , the webhook will not be called even if he is linked to a rule)
- * last_modified (ISO string)
- * orgId ( string :the organizatio Id of the the organization that created this webhook)
- * url (string: the url to call)
+Data obtained:   
+
+* created_at (ISO string)
+* _id (unique string)
+* is_active (boolan , if it is to false , the webhook will not be called even if he is linked to a rule)
+* last_modified (ISO string)
+* orgId ( string :the organizatio Id of the the organization that created this webhook)
+* url (string: the url to call)  
+
+
 
  *****
 
@@ -2398,11 +2568,13 @@ Data obtained:
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/global
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | The webhook you want to get
+webhookId | The webhook you want to get  
+
 
 
 ### Headers
@@ -2439,10 +2611,12 @@ Needs an API key
 ```https
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/webhooks/global
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 
 ### Headers
@@ -2484,12 +2658,14 @@ Needs an API key
 ```https
 POST
 http://{{base_url}}/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/global/{{state}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 webhookId | The global webhook you want to update the state of
-state |  The new sate of the webhook you want to update
+state |  The new sate of the webhook you want to update  
+
 
 
 ### Headers
@@ -2509,8 +2685,8 @@ state |  The new sate of the webhook you want to update
 
 ## Update a global webhook
 
-update the url of a specific global webhook  
-the url must be passed in the body it will be the only key accepted
+Update the url of a specific global webhook  
+The url must be passed in the body it will be the only key accepted  
 *****
 Needs an APi key
 
@@ -2518,11 +2694,13 @@ Needs an APi key
 ```https
 PATCH
 http://{{base_url}}/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | The global webhook you want to update
+webhookId | The global webhook you want to update  
+
 
 
 ### Headers
@@ -2555,20 +2733,22 @@ webhookId | The global webhook you want to update
 
 ## Delete a global webhook
 
-Delete a global webhook from the globalWebhooks object on firebase  
-This global webhook will never be called again
+Delete a global webhook from the globalWebhooks object on firebase   
+This global webhook will never be called again  
 *****
-Needs an API key
+Needs an API key  
 
 ### HTTP REQUEST
 ```https
 DELETE
 http://{{base_url}}/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | The global webhook you want to delete
+webhookId | The global webhook you want to delete  
+
 
 
 ### Headers
@@ -2592,6 +2772,7 @@ webhookId | The global webhook you want to delete
 
 Get a single customer by ID  
 Data obtained :  
+
 key | value
 ----|------
 _id |the unique id of the customer
@@ -2605,7 +2786,8 @@ settings |string contain the time zone of the customer
 subscribed |boolan , tell if the user suvbscribed to mails of the b2B service
 subscribed_maintenance| boolan , tell if the user suvbscribed to mails of maintenance the b2B service
 subscribed_reports| boolean , tell if the user subscribed to mails of reports of the b2B service
-subscribed_alerts | boolean , tell if the user subscribed to mails of alerts of the b2B service
+subscribed_alerts | boolean , tell if the user subscribed to mails of alerts of the b2B service  
+
 
 
 ******
@@ -2615,11 +2797,13 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-customerId | the customer you want to get
+customerId | the customer you want to get  
+
 
 ### Headers
 ```json
@@ -2658,13 +2842,15 @@ customerId | the customer you want to get
 ## Get Customers by role
 
 Get a customer by his role in the organization  
-There is 3 kinds of roles only  
+There is 3 kinds of roles only  :  
+
 * admins
 * technicians
-* viewers
+* viewers  
+
 
 If you pass another role than this 3 the server will throw an error  
-If there is no customers to send , the server will send an empty list
+If there is no customers to send , the server will send an empty list  
 
 *****
 Needs an API key
@@ -2673,11 +2859,13 @@ Needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/roles/{{role}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-role | The list of customer's role you want to get
+role | The list of customer's role you want to get  
+
 
 ### Headers
 ```json
@@ -2752,19 +2940,24 @@ role | The list of customer's role you want to get
 ## Create a customer to your organization
 
 Give the ability to create a customer for your organization :
-You need to provide 4 keys :
+You need to provide 4 keys :  
+
 key | value
 ----|------
 email |(a valid string email not already in use by another customer)
 name |(a valid string name for your customer)
 role |(a string among this three : admin , technician , viewer)
-time_zone |( a integer between -12 and 12)
+time_zone |( a integer between -12 and 12)  
+
 
 The customer object must be send in the body under the customer key  
-You can also add a key **send_mail** and put the value true to send a mail to the created customer
-\  
+You can also add a key **send_mail** and put the value true to send a mail to the created customer  
+
+
 In the response you will get the customer object created under the key **data.customer** (for more information on it go to the *Get a single customer by ID* endpoints)  
-You will also get the password of the created user under the key **data.password**  
+
+You will also get the password of the created user under the key **data.password**   
+
 If you decide to send mail to the customer , the login informations will be in it (email and password)  
   
 ******
@@ -2774,10 +2967,12 @@ Needs an API key
 ```https
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 ### Headers
 ```json
@@ -2786,7 +2981,7 @@ orgId | your organization Id
   }
 ```
 ### Body
-```json {
+```json
   {
     "customer":{
         "email":"myemail@gmail.com", 
@@ -2829,15 +3024,17 @@ orgId | your organization Id
 ## Change customer Role
 
 Give the ability to update the customer role
-The 3 possible roles are :
- * admin
- * viewer
- * technician
+The 3 possible roles are :  
+
+* admin
+* viewer
+* technician  
+
 
   
-You must pass the role in the url as a parameter  
-If the customer have already this role the server will send back an error  
-The customer must be under your organization
+You must pass the role in the url as a parameter   
+If the customer have already this role the server will send back an error   
+The customer must be under your organization  
 
 *****
 Needs an API key
@@ -2846,12 +3043,14 @@ Needs an API key
 ```https
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}/roles/{{role}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
 customerId | the customer you want to update the role
-role | the new role of the customer
+role | the new role of the customer  
+
 
 ### Headers
 ```json
@@ -2875,9 +3074,11 @@ role | the new role of the customer
 ## Delete a customer by Id
 
 Give you the ability to delete a customer by his Id  
-Note that:
+Note that:  
+
 * API keys of admins can delete viewers and technicians
-* API keys of owners can delete viewers technicians and admins
+* API keys of owners can delete viewers technicians and admins  
+
 *****
 Needs an API key
 
@@ -2885,11 +3086,13 @@ Needs an API key
 ```https
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}
-```
+```  
+
 parameter | value
 ----------|------
 orgId | your organization Id
-customerId | the customer you want to delete
+customerId | the customer you want to delete  
+
 
 
 ### Headers
@@ -2912,7 +3115,7 @@ customerId | the customer you want to delete
 ## Get a single organization by ID
 
 Give your organizations informations 
-The organization object will get the following keys :
+The organization object will get the following keys :  
 
 key | value
 ----|------
@@ -2927,7 +3130,8 @@ groups| an object ,  the list of groups of the organization
 last_modified| an ISO date , the last time , the last time the organization object was modified
 rules | an object , the list of rules Id of the organization,
 logo_url | a string , the url of the pictures of your logo
-name | a string , the name of the organization
+name | a string , the name of the organization  
+
 *****
 needs an API key
 
@@ -2935,10 +3139,12 @@ needs an API key
 ```https
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}
-```
+```  
+
 parameter | value
 ----------|------
-orgId | your organization Id
+orgId | your organization Id  
+
 
 
 ### Headers
@@ -3194,7 +3400,8 @@ orgId | your organization Id
         }
     }
 }
-```
+```  
+
 
 
 ![Image of Yaktocat](https://media.tenor.com/images/1afc4475062692a2b209819936f81626/tenor.gif)
