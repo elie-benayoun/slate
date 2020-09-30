@@ -40,35 +40,9 @@ Please contact our customer service team to sign up for a developer key and begi
 
 # Locations
 ## Add a Location
-To create a location you will need the following keys:  
+  
+> ### Body  
 
-
-key | value 
-----|------
-adress |(string)
-city |(string)
-name |(string)
-state |(string)
-zipcode |(string)  
-
-
-*****
- needs an APi keys  
- two locations can't have the same name  
- two locations can't be the same even with different name
-
-### HTTP Request
-```https
-POST
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations
-```
-
-parameter | value
-----------|------
-orgId | your organization Id  
-
-
-### Body
 
 ```json
   {
@@ -81,45 +55,65 @@ orgId | your organization Id
 
 ```
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
   {
     "status": "sucess",
     "message": "Created a new location",
     "newId": "-hrkiyEWBMqnreiZMHO"
-}
-```
-## Get All Locations
-Retrieve all locations under organization  
-the data is an object and each key/vallue is a locations 
-if you want more informations on the location object go to the *Get a single location by ID* endpoint
-*******
-needs an API key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations
+} 
 ```  
+
+To create a location you will need the following keys:  
+
+
+key | value 
+----|------
+adress |(string)
+city |(string)
+name |(string)
+state |(string)
+zipcode |(string)  
+
+
+
+* needs an APi keys  
+* two locations can't have the same name  
+* two locations can't be the same even with different name  
+
+
+### HTTP Request
+`
+POST
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id  
 
-### Headers
+
+## Get All Locations  
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -181,47 +175,37 @@ orgId | your organization Id
         }
     }
 }
-```
-## Get a Specific Location
-get a specific location under organization  
-minimum data obtained :  
-
-key | value
-----|------
-_id |(unique string)
-adress|(string)
-city |(string)
-created_at |(ISO date string)
-last_modified |(ISO date string)
-lattitude and longitude |(float numbers)
-name |(unique string among locations)
-state |(string)
-zipcode |(string)
-components|(object more informations on the location)  
-
-
-******
-Needs an API key
-### HTTP REQUEST
-GET
-```https
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
 ```  
+
+
+Retrieve all locations under organization  
+the data is an object and each key/vallue is a locations 
+if you want more informations on the location object go to the *Get a single location by ID* endpoint
+*******
+needs an API key
+### HTTP REQUEST
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations
+`
 
 parameter | value
 ----------|------
-orgId | your organization Id
-locationId | The location Id you want to get  
+orgId | your organization Id  
 
 
-### Headers
+## Get a Specific Location
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -253,9 +237,77 @@ locationId | The location Id you want to get
         "zipcode": "8101306"
     }
 }
-```
+```  
+get a specific location under organization  
+minimum data obtained :  
+
+key | value
+----|------
+_id |(unique string)
+adress|(string)
+city |(string)
+created_at |(ISO date string)
+last_modified |(ISO date string)
+lattitude and longitude |(float numbers)
+name |(unique string among locations)
+state |(string)
+zipcode |(string)
+components|(object more informations on the location)  
+  
+
+* Needs an API key  
+
+### HTTP REQUEST
+
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
+`
+
+parameter | value
+----------|------
+orgId | your organization Id
+locationId | The location Id you want to get  
+
+
+
 ## Update a Specific Location
-update a specific key of a specific location under organization:  
+  
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Body  
+
+```json
+  {   
+    "state":"Israel",
+    "zipcode":"86953",
+    "city":"Tel Aviv",
+    "address":"4 Sderot Rothschild"
+}
+```
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "data": {
+        "state": "Israel",
+        "zipcode": "86953",
+        "city": "Tel Aviv",
+        "address": "4 Sderot Rothschild"
+    }
+}
+```  
+
+Update a specific key of a specific location under organization:  
 If you want to update the adress , you will have also to pass the city , the state and the zipcode  
 Meaning you can pass 3 differents objects with the following keys :  
 
@@ -286,13 +338,16 @@ Meaning you can pass 3 differents objects with the following keys :
 
 
 Note that two locations can not have the same name and cannot be the same  
-*****
-needs an API key
+  
+
+* needs an API key  
+
+
 ### HTTP REQUEST
-```https
+`
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -300,47 +355,41 @@ orgId | your organization Id
 locationId | the location Id you want to update  
 
 
-### Headers
+## Delete a Specific Location  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
-```json
-  {   
-    "state":"Israel",
-    "zipcode":"86953",
-    "city":"Tel Aviv",
-    "address":"4 Sderot Rothschild"
-}
-```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
-    "data": {
-        "state": "Israel",
-        "zipcode": "86953",
-        "city": "Tel Aviv",
-        "address": "4 Sderot Rothschild"
-    }
+    "message": "location deleted",
+    "locationId": "-Lp2LeDOb8SdpqYU1Wpw12"
 }
-```
-## Delete a Specific Location
-delete a location by his Id  
-you must be the owner of the location   
-all the devices that had this locationId will take the value null 
+```  
+
+Delete a location by his Id  
+The Organization must be the owner of the location   
+All the devices that had this locationId will take the value null 
 <aside class="warning"> Deleting a location will also delete all the groups and floors that had this locationId , all the devices and rule will became floating with null value for floorId , groupId , locationId and all the rules will still exist but they will no longer be linked to any group , so to any devices </aside>
-*****
-needs an API key
+  
+
+* Needs an API key  
+
 ### HTTP REQUEST  
-```https
+`
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/locations/{{locationId}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -348,7 +397,13 @@ orgId | your organization Id
 locationId | the location Id you want to Delete  
 
 
-### Headers
+# Floors  
+
+## Add a Floor
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -356,20 +411,25 @@ locationId | the location Id you want to Delete
 ```
 
 
-### Response
+> ### Body  
+
+```json
+{
+    "name":"floor 1",
+    "locationId":"-awmagoeQTSlyvdcvrrEQPIQHFT",
+    "reminderDay":1
+}
+```
+> ### Response  
+
 ```json
 {
     "status": "success",
-    "message": "location deleted",
-    "locationId": "-Lp2LeDOb8SdpqYU1Wpw12"
+    "message": "Created a new Floor",
+    "locationId": "-ntdrloKTWKHifxfpXPJFKEDB"
 }
-```
-  
-  
+```  
 
-
-# Floors
-## Add a Floor
 Give the ability to create a floor  
 data needed :  
 
@@ -385,63 +445,26 @@ reminderDay |(a number representing the day of the month when you want a reminde
 Note that you can't create two same floors under the same organizaition  
 Two floors can not have the same name
 <aside class="warning"> You will not be able to change the location of the floor later so becareful  </aside>
+  
 
-*****
-needs an API key
+* Needs an API key  
+
 ### HTTP REQUEST
-```https
+
+`
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors
-```  
-
+`
 parameter | value
 ----------|------
 orgId | your organization Id  
 
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-
-### Body
-```json
-{
-    "name":"floor 1",
-    "locationId":"-awmagoeQTSlyvdcvrrEQPIQHFT",
-    "reminderDay":1
-}
-```
-### Response
-```json
-{
-    "status": "success",
-    "message": "Created a new Floor",
-    "locationId": "-ntdrloKTWKHifxfpXPJFKEDB"
-}
-```
   
-## Get All Floors
-Retrieve all floors under organization  
-If you want more details n the floor object go to the *Get a single floor by ID* endpoint
-
-*****
-needs an API key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id  
+## Get All Floors  
 
 
-### Headers
+> ### Headers 
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -449,7 +472,8 @@ orgId | your organization Id
 ```
 
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -472,35 +496,30 @@ orgId | your organization Id
         }
     }
 }
-```
-  
-## Get a Specific Floor
-Get a floor by his Id  
-the received object will have the folowing keys :  
-
-key | value
-----|------
-_id | string , the id of the floor 
-created_at | ISO string date , date of creation of the floor
-last_modified | ISO string date , last update of the floor
-locationId | unique string , the location of the floor
-name |  string , unique among floor under the sane location
-reminderDay | integer , day of the month to clean the pre_filter of the devices , can be 1 , 5 , 10 or 15  
-
-*****
-needs an API key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
 ```  
+
+Retrieve all floors under organization  
+If you want more details n the floor object go to the *Get a single floor by ID* endpoint
+  
+
+* Needs an API key  
+
+### HTTP REQUEST
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors
+`  
 
 parameter | value
 ----------|------
-orgId | your organization Id
-floorId | the floor Id you want to update  
+orgId | your organization Id  
 
-### Headers
+  
+## Get a Specific Floor  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -508,7 +527,8 @@ floorId | the floor Id you want to update
 ```
 
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -521,11 +541,68 @@ floorId | the floor Id you want to update
         "reminderDay": "1"
     }
 }
-```
+```  
+
+Get a floor by his Id  
+The received object will have the folowing keys :  
+
+key | value
+----|------
+_id | string , the id of the floor 
+created_at | ISO string date , date of creation of the floor
+last_modified | ISO string date , last update of the floor
+locationId | unique string , the location of the floor
+name |  string , unique among floor under the sane location
+reminderDay | integer , day of the month to clean the pre_filter of the devices , can be 1 , 5 , 10 or 15  
+
   
-## Update a Specific Floor
+
+* needs an API key  
+
+### HTTP REQUEST
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
+`  
+
+
+parameter | value
+----------|------
+orgId | your organization Id
+floorId | the floor Id you want to update  
+
+  
+## Update a Specific Floor  
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Body  
+
+```json
+{
+    "name":"floor 9"
+}
+```
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "data": {
+        "name": "floor 9"
+    }
+}
+```  
+
 Update keys of a floor under a specific organization:  
-the keys you can update are :  
+The keys you can update are :  
 
 key | value
 ----|------
@@ -534,61 +611,28 @@ reminderDay |(a number representing the day of the month when you want a reminde
 
 
 Note that two floors can not have the same name
-*****
-needs an API key
+  
+
+* Needs an API key  
+
 ### HTTP REQUEST
-```https
+`
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
-```  
+`  
+
 
 parameter | value
 ----------|------
 orgId | your organization Id
 floorId | the floor Id you want to update  
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Body
-```json
-{
-    "name":"floor 9"
-}
-```
-### Response
-```json
-{
-    "status": "success",
-    "data": {
-        "name": "floor 9"
-    }
-}
-```
   
-## Delete a Specific Floor
-Delete an existing floor from your organization  
-Note that all the devices that had this floor will have now a key floorId with a **null** value
-
-*****
-Needs an APi key
-### HTTP REQUEST
-```https
-DELETE
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id
-floorId | the floor Id you want to delete  
+  
+## Delete a Specific Floor 
 
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -596,17 +640,71 @@ floorId | the floor Id you want to delete
 ```
 
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
     "message": "floor has been deleted",
     "floorId": "-M8tVY8qZaSrXtrUzG80"
 }
-```
+```  
+
+Delete an existing floor from your organization  
+Note that all the devices that had this floor will have now a key floorId with a **null** value
+  
+
+* Needs an APi key  
+
+### HTTP REQUEST
+`
+DELETE
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/floors/{{floorId}}
+`  
+
+
+parameter | value
+----------|------
+orgId | your organization Id
+floorId | the floor Id you want to delete  
+
   
 # Groups
-## Add a Group
+## Add a Group  
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Body  
+
+```json
+{
+    "locationId":"-awmagoeQTSlyvdcvrrEQPIQHFT",
+    "name": "test322"
+}
+```  
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "Created a new Group",
+    "data": {
+        "groupId": "-levreaJYHSAKvntwbnuGCLROV",
+        "name": "test322",
+        "locationId": "-awmagoeQTSlyvdcvrrEQPIQHFT"
+    }
+}
+```  
+
+
 Give the ability to create a new group  
 Data needed :   
 
@@ -619,72 +717,37 @@ name |(unique string among the groups)
 Note that the locationId used must be under your organization  
 two groups can not have the same name
 <aside class="warning"> You will not be able to update the locationId of a group later so becareful  </aside>
+  
 
-*****
-Needs an API key
-### HTTP REQUEST
-```https
+* Needs an API key  
+
+### HTTP REQUEST  
+
+`
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups
-```  
+`  
+
 
 parameter | value
 ----------|------
 orgId | your organization Id  
 
 
-### Headers
+## Get All Groups  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
-```
-
-### Body
-```json
-{
-    "locationId":"-awmagoeQTSlyvdcvrrEQPIQHFT",
-    "name": "test322"
-}
-```
-### Response
-```json
-{
-    "status": "success",
-    "message": "Created a new Group",
-    "data": {
-        "groupId": "-levreaJYHSAKvntwbnuGCLROV",
-        "name": "test322",
-        "locationId": "-awmagoeQTSlyvdcvrrEQPIQHFT"
-    }
-}
-```
-## Get All Groups
-Retrieve a list of all groups under your organization  
-Go to the *get a single group by ID* endpoint to get more informations on the structure of the group object
-
-*****
-Needs an API key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups
 ```  
 
-parameter | value
-----------|------
-orgId | your organization Id  
 
+> ### Response  
 
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-
-### Response
 ```json
 {
     "status": "success",
@@ -712,8 +775,54 @@ orgId | your organization Id
         }   
       }
 }
+```  
+
+Retrieve a list of all groups under your organization  
+Go to the *get a single group by ID* endpoint to get more informations on the structure of the group object
+
+  
+
+* Needs an API key  
+
+### HTTP REQUEST  
+
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups
+`
+
+parameter | value
+----------|------
+orgId | your organization Id  
+
+
+## Get a Specific Group  
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
 ```
-## Get a Specific Group
+
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "data": {
+        "_id": "-M8tcHwxWOGJtVAZI14G",
+        "created_at": "2020-06-03T10:01:46.121Z",
+        "last_modified": "2020-06-03T10:01:46.121Z",
+        "locationId": "-Lp2LeDOb8SdpqYU1Wpw13",
+        "name": "ee"
+    }
+}
+```  
+
 Get a single group by his Id under tour organization  
 Data obtained :  
 
@@ -727,14 +836,17 @@ name |(unique string among your groups)
 
 
 Note that the group must be under your organization (created by it) if you want to access it
+  
 
-*****
-Needs an API key
-### HTTP REQUEST
-```https
+* Needs an API key  
+
+### HTTP REQUEST  
+
+`
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
-```  
+`  
+
 
 parameter | value
 ----------|------
@@ -742,65 +854,26 @@ orgId | your organization Id
 groupId | the group Id you want to get  
 
 
-### Headers
+## Update a Specific Group  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
+> ### Body  
 
-### Response
-```json
-{
-    "status": "success",
-    "data": {
-        "_id": "-M8tcHwxWOGJtVAZI14G",
-        "created_at": "2020-06-03T10:01:46.121Z",
-        "last_modified": "2020-06-03T10:01:46.121Z",
-        "locationId": "-Lp2LeDOb8SdpqYU1Wpw13",
-        "name": "ee"
-    }
-}
-```
-## Update a Specific Group
-Update keys of a single group  
-Key to update:  
-
-key | value
-----|------
-name |(unique string among groups)  
-
-
-
-*****
-Needs an API key
-### HTTP REQUEST
-```https
-PATCH
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id
-groupId | the groupId you want to update  
-
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Body
 ```json
 {
     "name":"best group in the world"
 }
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "succes",
@@ -813,26 +886,36 @@ groupId | the groupId you want to update
         }
     }
 }
-```
-
-## Remove the rule link to a group
-Give the ability to remove the link between the group and his rule without knowing the rule Id  
-Note that all the devices that had this group will now  have a value **null** to the key ruleId  
-*****
-Needs an API key
-### HTTP REQUEST
-```https
-DELETE
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}/rules
 ```  
+
+Update keys of a single group  
+Key to update:  
+
+key | value
+----|------
+name |(unique string among groups)  
+
+  
+
+* Needs an API key  
+
+### HTTP REQUEST
+`
+PATCH
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
+`  
+
 
 parameter | value
 ----------|------
 orgId | your organization Id
-groupId | the group Id you want to remove the rule  
+groupId | the groupId you want to update  
 
 
-### Headers
+## Remove the rule link to a group  
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -840,7 +923,8 @@ groupId | the group Id you want to remove the rule
 ```
 
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -849,29 +933,34 @@ groupId | the group Id you want to remove the rule
         "groupId": "-rzrkxvyehZSKXZBFtqmcgmspHIDHQK"
     }
 }
-```
-
-## Delete a Specific Group
-Give the ability to delete a group by his Id  
-Note that all the devices that had this group will now  have a value **null** to the key grouId  
-
-<aside class="warning"> If a rule was linked to this group all the devices that were linked to this group will now have the value null for ruleId  </aside>
-
-******
-Needs an API key
-### HTTP REQUEST
-```https
-DELETE
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
 ```  
+
+
+Give the ability to remove the link between the group and his rule without knowing the rule Id  
+Note that all the devices that had this group will now  have a value **null** to the key ruleId  
+
+  
+
+* Needs an API key  
+
+### HTTP REQUEST
+`
+DELETE
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}/rules
+`  
+
 
 parameter | value
 ----------|------
 orgId | your organization Id
-groupId | the group Id you want to delete  
+groupId | the group Id you want to remove the rule  
 
 
-### Headers
+
+## Delete a Specific Group  
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -879,7 +968,8 @@ groupId | the group Id you want to delete
 ```
 
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -888,30 +978,38 @@ groupId | the group Id you want to delete
         "groupId": "ooxyyZz2"
     }
 }
-```
+```  
+
+
+Give the ability to delete a group by his Id  
+Note that all the devices that had this group will now  have a value **null** to the key grouId  
+
+<aside class="warning"> If a rule was linked to this group all the devices that were linked to this group will now have the value null for ruleId  </aside>
+
+  
+
+* Needs an API key  
+
+### HTTP REQUEST
+`
+DELETE
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/groups/{{groupId}}
+`  
+
+
+parameter | value
+----------|------
+orgId | your organization Id
+groupId | the group Id you want to delete  
+
 
 # Devices
 
 ## Get All Devices
 
-Retrieve a list of devices object under your organization  
-If you want more details on the device object go to the *get  a single devide by ID* endpoints  
 
+> ### Headers  
 
-*****
-Needs an API  key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id  
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
@@ -919,7 +1017,8 @@ orgId | your organization Id
 ```
 
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -946,8 +1045,57 @@ orgId | your organization Id
         }
     }
 }
+```  
+
+Retrieve a list of devices object under your organization  
+If you want more details on the device object go to the *get  a single devide by ID* endpoints  
+
+  
+
+* Needs an API  key  
+
+
+### HTTP REQUEST
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices
+`  
+
+
+parameter | value
+----------|------
+orgId | your organization Id  
+
+
+## Get a Specific Device  
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
 ```
-## Get a Specific Device
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "data": {
+        "_id": "3b002c001047383531363134",
+        "created_at": "2020-05-14T09:22:58.431Z",
+        "filter_due_date": "2020-10-14T09:22:58.431Z",
+        "floorId": "-M8op_BSEnPr4ccQoITD",
+        "groupId": "-M8tcVdtAlnqpHljBiVq",
+        "last_modified": "2020-06-07T12:29:54.303Z",
+        "locationId": "-Lp2LeDOb8SdpqYU1Wpw12",
+        "room": "Children Room"
+    }
+}
+```  
+
 
 Get a single device by it ID  
 Data obtained :  
@@ -964,14 +1112,16 @@ locationId |(The string id of an existing location of your organization)
 room |(similar to a name , except it is not unique)
 ruleId | optional , string , the rule that is link to the group of the device  
 
+  
 
-*****
-Needs an API key
-### HTTP REQUEST
-```https
+* Needs an API key  
+
+### HTTP REQUEST  
+
+`
 GET
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices/{{deviceId}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -979,30 +1129,40 @@ orgId | your organization Id
 deviceId | the device id you want to get  
 
 
-### Headers
+## Update a Specific Device  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Body  
+
+```json
+{
+    "room": "Living Room"
+}
+```
+> ### Response  
+
 ```json
 {
     "status": "success",
+    "message": "device updated",
     "data": {
-        "_id": "3b002c001047383531363134",
-        "created_at": "2020-05-14T09:22:58.431Z",
-        "filter_due_date": "2020-10-14T09:22:58.431Z",
-        "floorId": "-M8op_BSEnPr4ccQoITD",
-        "groupId": "-M8tcVdtAlnqpHljBiVq",
-        "last_modified": "2020-06-07T12:29:54.303Z",
-        "locationId": "-Lp2LeDOb8SdpqYU1Wpw12",
-        "room": "Children Room"
+        "deviceId": "3b002c001047383531363134",
+        "info": {
+            "status": true,
+            "message": "Data updated succesfully!"
+        }
     }
 }
-```
-## Update a Specific Device
+```  
+
 
 Update keys of a device :  
 Here is a list of the keys you can update :  
@@ -1025,13 +1185,17 @@ Note that :
 * When you update the groupId of a device , the ruleId of this one will also change according to the rule link to the new group , ifthe new group is not link to any rule the ruleId value of the device will become **null**  
 * If you delete the location link to this device  , the groupId , floorId , ruleId and locationId will also be set to null    
 
-*****
-Needs an API key
-### HTTP REQUEST
-```https
+  
+
+* Needs an API key  
+
+
+### HTTP REQUEST  
+`
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/devices/{{deviceId}}
-```  
+`   
+
 
 parameter | value
 ----------|------
@@ -1039,34 +1203,58 @@ orgId | your organization Id
 deviceId | the device Id you want to update  
 
 
-### Headers
+## Get Sensor Data of a specific Device
+  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
+> ### Response  
+
 ```json
 {
-    "room": "Living Room"
-}
-```
-### Response
-```json
-{
-    "status": "success",
-    "message": "device updated",
+    "status": "succes",
     "data": {
-        "deviceId": "3b002c001047383531363134",
-        "info": {
-            "status": true,
-            "message": "Data updated succesfully!"
+        "aqi": {
+            "value": 0
+        },
+        "pm10": {
+            "value": 8,
+            "units": "µg/m3"
+        },
+        "pm25": {
+            "value": 0,
+            "units": "µg/m3"
+        },
+        "co": {
+            "value": 0.8,
+            "units": "ppm"
+        },
+        "humidity": {
+            "value": 45.8,
+            "units": "%"
+        },
+        "temperature": {
+            "value": 26,
+            "units": "C"
+        },
+        "co2": {
+            "value": 417,
+            "units": "ppb"
+        },
+        "voc": {
+            "value": 38,
+            "units": "ppb"
         }
     }
 }
-```
-## Get Sensor Data of a specific Device
+```  
 
 Get the device sensor data at the actual moment by it id  
 Here is a list of sensor :  
@@ -1085,13 +1273,15 @@ voc |(organic component in ppb)
 
 You can pass a list of sensor (separated by a coma) in the query *sensor* to get only specific sensors  
 If you don't pass any query the server will sent you all the sensor informations
-*****
-Needs an API key
+  
+
+* Needs an API key  
+
 ### HTTP REQUEST
-```https
+`
 GET
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/sensors
-```  
+`  
 
 parameter | value
 ----------|------
@@ -1105,37 +1295,42 @@ query | value
 sensor (optional)| list of sensors you want to get the value off  
 
 
-### Headers
+## Set Device Mode  \
+  
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
-```json
+> ### Body  
+
+```json 
 {
-    "room": "Living Room"
-}
-```
-### Response
-```json
-{
-    "status": "success",
-    "message": "device updated",
-    "data": {
-        "deviceId": "3b002c001047383531363134",
-        "info": {
-            "status": true,
-            "message": "Data updated succesfully!"
-        }
-    }
+    "startTime":"8:00",
+    "endTime":"15:00"
 }
 ```
 
-## Set Device Mode
-set device mode (call firmware setSystemMode):  
-the mode passed as a parameter can be  
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "The mode was updated",
+    "data": {
+        "mode": "booster",
+        "deviceId": "25002e001147383531363134"
+    }
+}
+```  
+
+
+Set device mode (call firmware setSystemMode):  
+The mode passed as a parameter can be  
 
 * booster
 * normal  
@@ -1156,16 +1351,16 @@ Note that :
 
 * the start time must be before the end time 
 * the time of activity of the booster mode is calculated by slice of half an hour you have know that the time difference between the start time and the end time will be rounded tot  the nearest half an hour slice for the booster mode  
+  
 
-*****
+* Needs an API key   
 
-Needs an API key  
 
 ### HTTP REQUEST
-```https
+`
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/mode/{{mode}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -1174,63 +1369,19 @@ deviceId | the device Id you want to get the sensor
 mode | the mode you want to set the device in (can be booster or normal)  
 
 
+## Set Device Timezone  
+  
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body 
+> ### Response  
 
-```json 
-{
-    "startTime":"8:00",
-    "endTime":"15:00"
-}
-```
-
-### Response
-```json
-{
-    "status": "success",
-    "message": "The mode was updated",
-    "data": {
-        "mode": "booster",
-        "deviceId": "25002e001147383531363134"
-    }
-}
-```
-
-## Set Device Timezone
-Set device timezone (call firmware setTimeZone)  
-The **timezone** prameter must be a integer number between -12 and 12
-
-*****
-Needs an API key
-### HTTP REQUEST
-```https
-POST
-https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/timezone/{{timezone}}
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id
-deviceId | the device Id you want to get the sensor
-timezone | the mode you want to set the timezone in (can be an integer between -12 and 12)  
-
-
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
 ```json
 {
     "status": "Configured successfully",
@@ -1240,36 +1391,40 @@ timezone | the mode you want to set the timezone in (can be an integer between -
         "timezone": -2
     }
 }
-```
+```  
 
-## Get the EEPROM of a single device
-Give the ability to get the **EEPROM** of a specific device by id
+Set device timezone (call firmware setTimeZone)  
+The **timezone** prameter must be a integer number between -12 and 12
+  
 
-******
-Needs an API key
-
+* Needs an API key  
 
 ### HTTP REQUEST
-```https
-GET
-https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/EEPROMContent
-```  
+`
+POST
+https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/timezone/{{timezone}}
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to get the EEPROM  
+deviceId | the device Id you want to get the sensor
+timezone | the mode you want to set the timezone in (can be an integer between -12 and 12)  
 
 
+## Get the EEPROM of a single device  
+  
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "Configured successfully",
@@ -1290,36 +1445,42 @@ deviceId | the device Id you want to get the EEPROM
         "device": "25002e001147383531363134"
     }
 }
-```
-## Get the ssid of a specific device
+```  
 
-Give the ability to access the **ssid** of a specific device  
-Meaning releavant informations on the wifi setting of the device
-******
-Needs an API key
+
+Give the ability to get the **EEPROM** of a specific device by id
+
+  
+
+* Needs an API key  
+
 
 
 ### HTTP REQUEST
-```https
+`
 GET
-https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/ssid
-```  
+https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/EEPROMContent
+`  
 
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to get the ssid  
+deviceId | the device Id you want to get the EEPROM  
 
 
+## Get the ssid of a specific device
 
-### Headers
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "Configured successfully",
@@ -1338,37 +1499,42 @@ deviceId | the device Id you want to get the ssid
     },
     "device": "25002e001147383531363134"
 }
-```
-## Set Led indication on a specific device
+```  
 
-Give the ability to turn on or off the led of a specific device  
-In the url you have to pass the parameter **on** or **off**
-*****
-Needs an API Key
+
+Give the ability to access the **ssid** of a specific device  
+Meaning releavant informations on the wifi setting of the device
+  
+
+* Needs an API key  
+
 
 
 ### HTTP REQUEST
-```https
-POST
-https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/switchLed/{{state}}
-```  
+`
+GET
+https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/ssid
+` 
 
 parameter | value
 ----------|------
 orgId | your organization Id
-deviceId | the device Id you want to change the led state
-state | the new state of the led (on or off)  
+deviceId | the device Id you want to get the ssid  
 
 
+## Set Led indication on a specific device
 
-### Headers
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "Configured successfully",
@@ -1377,9 +1543,57 @@ state | the new state of the led (on or off)
         "device": "25002e001147383531363134"
     }
 }
-```
+```  
+
+
+Give the ability to turn on or off the led of a specific device  
+In the url you have to pass the parameter **on** or **off**
+  
+  
+* Needs an API Key  
+
+
+### HTTP REQUEST
+`
+POST
+https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/switchLed/{{state}}
+`  
+
+
+parameter | value
+----------|------
+orgId | your organization Id
+deviceId | the device Id you want to change the led state
+state | the new state of the led (on or off)  
+
 
 ## Set device ssid
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+> ### Body  
+
+```json
+{
+    "ssid_name":"Highroad",
+    "ssid_password":"*******"
+}
+```
+> ### Response  
+
+```json
+{
+    "status": "Configured successfully",
+    "device": "25002e001147383531363134"
+}
+```  
+
 
 Give you the ability to change the wi-fi of the device  
 In the body two keys are needed :  
@@ -1390,41 +1604,20 @@ ssid_name | a string that is the name of the wi-fi
 ssid_password | the password of the wi-fi   
 
   
-  
+* Needs an APi key
+
+    
 ### HTTP REQUEST
-```https
+`
 POST
 https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/setCredentials
-```  
+` 
 
 parameter | value
 ----------|------
 orgId | your organization Id
 deviceId | the device Id you want to change the ssid  
 
-
-
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-### Body 
-```json
-{
-    "ssid_name":"Highroad",
-    "ssid_password":"*******"
-}
-```
-### Response
-```json
-{
-    "status": "Configured successfully",
-    "device": "25002e001147383531363134"
-}
-```
 
 # Rules
 ## Add a Rule
