@@ -1622,46 +1622,17 @@ deviceId | the device Id you want to change the ssid
 # Rules
 ## Add a Rule
 
-Give the ability to create a new rule  
-data to provided:  
 
-key | value
-----|------
-groupId |(unique string must be in your organization)
-name |(must be unique among the rules)
-margins |(must follow the same rule as said in the *update a single rule* endpoint endpoints and must contain at least active , min and max for one sensor)  
+> ### Headers  
 
-  
-*****
-you can't create two same rule in the same organization 
-<aside class="warning"> If there are devices link to the group you created the rule for , all the devices will take the new rule id as the value of the key *ruleId* </aside>
-
-
-<aside class="warning"> You can not link two rules to the same group , if the groupId that you use is already linked to a rule you will receive an error message. You can use the *delete group's rule* endpoint as a solution </aside>
-
-If you want to link or unlink a rule from a webhook use instaead the enpoint  *link or unlink a weebhook to rule* 
-*****
-Need an API key
-
-### HTTP REQUEST
-```https
-POST
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id  
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
+> ### Body  
+
 ```json
 {
   "floorId": "-M8tVY8qZaSrXtrUzG80",
@@ -1707,7 +1678,8 @@ orgId | your organization Id
   "name": "The name"
 }
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "succes",
@@ -1716,32 +1688,57 @@ orgId | your organization Id
         "newId": "-ktqufHOTPCbyxyuXWCMPDB"
     }
 }
-```
-## Get All Rules
-
-Get a list of all the ids of the rules of the organization  
-To get more informations on one rule use *Get a single rule by ID* endpoints
-*****
-needs an API key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules
 ```  
+
+
+Give the ability to create a new rule  
+Data to provide:  
+
+key | value
+----|------
+groupId |(unique string must be in your organization)
+name |(must be unique among the rules)
+margins |(must follow the same rule as said in the *update a single rule* endpoint endpoints and must contain at least active , min and max for one sensor)  
+
+For more informations about the margins key go to *update a single rule* endpoint
+
+<aside class="warning"> If there are devices link to the group you created the rule for , all the devices will take the new rule id as the value of the key *ruleId* </aside>
+
+
+<aside class="warning"> You can not link two rules to the same group , if the groupId that you use is already linked to a rule you will receive an error message. You can use the *delete group's rule* endpoint as a solution </aside>
+
+If you want to link or unlink a rule from a webhook use instaead the enpoint  *link or unlink a weebhook to rule* 
+
+  
+
+* Need an API key  
+
+
+### HTTP REQUEST
+`
+POST
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules
+`  
+
 
 parameter | value
 ----------|------
 orgId | your organization Id  
 
 
-### Headers
+## Get All Rules
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -1755,43 +1752,38 @@ orgId | your organization Id
     ]
 }
 ```  
+ 
 
-## Get a Specific Rule
+Get a list of all the ids of the rules of the organization  
+To get more informations on one rule use *Get a single rule by ID* endpoints
+  
 
-get a specific rule by id :  
-data obtained :  
+* Needs an API key  
 
-key | value
-----|------
-_id |(unique string)
-groupId |(unique string  , reference to  an existing group of the company)
-margins |(object Go to *update  a single rule* endpoints for more details)
-name |(unique string among the rules)
-organizationId |(string)  
-
-
-*****
-Needs an API key
 ### HTTP REQUEST
-```https
+`
 GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules
+`
 
 parameter | value
 ----------|------
-orgId | your organization Id
-ruleId | the rule Id you want to get  
+orgId | your organization Id  
+ 
+
+## Get a Specific Rule
 
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
   "_id" : "-MDn_EnJIQhseLKWablp",
@@ -1837,8 +1829,70 @@ ruleId | the rule Id you want to get
   "organizationId" : "keC9HTwXplOvCc9M1RS82lxX3ax2"
 }
 
-```
+```  
+
+
+Get a specific rule by id :  
+data obtained :  
+
+key | value
+----|------
+_id |(unique string)
+groupId |(unique string  , reference to  an existing group of the company)
+margins |(object Go to *update  a single rule* endpoints for more details)
+name |(unique string among the rules)
+organizationId |(string)  
+
+  
+
+* Needs an API key  
+
+### HTTP REQUEST
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
+`
+
+parameter | value
+----------|------
+orgId | your organization Id
+ruleId | the rule Id you want to get  
+
+
 ## Update a Specific Rule
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Body  
+
+```json
+{
+ "margins":{
+     "co2":{
+         "active":true ,
+          "max":50 ,
+           "min":30
+           }
+        }
+    }
+```
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "rule updated sucessfully",
+    "ruleId": "-ughkJFSBOZJapniyYREERQ"
+}
+```  
+
 
 Update a specific rule by id  
 Here is a list of the differents keys that you can update :  
@@ -1879,7 +1933,7 @@ Note that you need at least one sensor in the margin object
 If you don't put a sensor , he will appear in the database with only the key active false inside it  
 You are able also to create a sesnor with only a key active false  
 
-*****
+
 Note that :  
 
 * The groupId must be valid
@@ -1887,12 +1941,13 @@ Note that :
 * updating the margins will just update the sensors you specify , for updating (rewrite) all the margins use the endpoints post margins instead
 * If you update the groupId becareful that the group is not already link to another rule , unless it will not works
 * Changing the groupId will change the key ruleId inside the device link to the new group , it will take the id of the rule 
-* you need an API key
+* you need an API key  
+
 ### HTTP REQUEST
-```https
+`
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -1900,76 +1955,19 @@ orgId | your organization Id
 ruleId | the rule Id you want to update  
 
 
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Body
-```json
-{
- "floorId":"-MB3g6XBsP5h4mJC4UfI" ,
- "margins":{
-     "co2":{
-         "active":true ,
-          "max":50 ,
-           "min":30
-           }
-        }
-    }
-```
-### Response
-```json
-{
-    "status": "success",
-    "message": "rule updated sucessfully",
-    "ruleId": "-ughkJFSBOZJapniyYREERQ"
-}
-```
-
 ## Update a specific sensor of a specific rule
 
-Give the ability to update a specific sensor from a specific rule:  
-Pass a s a parameter the sensor name , that must be one of the list of the *update a single rule* endpoint 
-In the body the server is waitinf for 3 keys :  
 
-key | value
-----|------
-active |(boolean : is the rule on this sensor will be active and will triger) 
-min |(integer , the minimum value of the sensor)  
-max |(integer , the maximum value of the sensor)    
+> ### Headers  
 
-  
-
-******
-Note that:  
-
-* Needs an API key  
-
-### HTTP REQUEST  
-
-```https
-PATCH
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/margin/{{sensor}}
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id
-ruleId | the rule Id you want to update
-sensor | the sensor name you want to update  
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
+> ### Body  
+
 ```json
 {
     "active":true,
@@ -1977,7 +1975,8 @@ sensor | the sensor name you want to update
     "min":15
 }
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -1990,38 +1989,49 @@ sensor | the sensor name you want to update
         }
     }
 }
-```
-
-## Rewrite margins of a specific rule
-Give the ability to rewrite the margins of a rule:  
-be carfeul:  
-
-* the sensor name should be present in the list showed on the *update a single rule* endpoint
-* all the others sensors margins of this rule will be deleted  
-
- ******
-Needs an API key  
-
-### HTTP REQUEST
-```https
-POST
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/margins
 ```  
+
+
+Give the ability to update a specific sensor from a specific rule:  
+Pass a s a parameter the sensor name , that must be one of the list of the *update a single rule* endpoint 
+In the body the server is waitinf for 3 keys :  
+
+key | value
+----|------
+active |(boolean : is the rule on this sensor will be active and will triger) 
+min |(integer , the minimum value of the sensor)  
+max |(integer , the maximum value of the sensor)    
+  
+
+* Needs an API key  
+
+### HTTP REQUEST  
+
+`
+PATCH
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/margin/{{sensor}}
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to rewrite the margins  
+ruleId | the rule Id you want to update
+sensor | the sensor name you want to update  
 
 
-### Headers
+## Rewrite margins of a specific rule  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
+> ### Body  
+
 ```json
 {"co":{
     "active":true,
@@ -2029,7 +2039,8 @@ ruleId | the rule Id you want to rewrite the margins
     "max":50
 }}
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2044,34 +2055,45 @@ ruleId | the rule Id you want to rewrite the margins
         }
     }
 }
-```
+```  
 
-## Remove webhooks from a rule
 
-This endpoint remove all the webhooks from a given rule  
-In the rule object the webhooks ids list will be remove  
-Inside each webhook that was linked to the rule , the rule Id will be remove from the array of rules  
+Give the ability to rewrite the margins of a rule:  
+be carfeul:  
+
+* the sensor name should be present in the list showed on the *update a single rule* endpoint
+* all the others sensors margins of this rule will be deleted  
+
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
-DELETE
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks
-```  
+`
+POST
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/margins
+`  
 
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | the rule Id you want to remove the webhooks  
+ruleId | the rule Id you want to rewrite the margins  
 
 
-### Headers
+## Remove webhooks from a rule
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "Success",
@@ -2080,21 +2102,64 @@ ruleId | the rule Id you want to remove the webhooks
         "ruleId": "-bagllCEFPTBKtkiqfbJVFY"
     }
 }
-```
+```  
+
+
+This endpoint remove all the webhooks from a given rule  
+In the rule object the webhooks ids list will be remove  
+Inside each webhook that was linked to the rule , the rule Id will be remove from the array of rules  
+  
+* Needs an Api Key  
+
+
+### HTTP REQUEST
+`
+DELETE
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks
+`  
+
+
+parameter | value
+----------|------
+orgId | your organization Id
+ruleId | the rule Id you want to remove the webhooks  
+
 
 ## Delete a Specific Rule
 
-remove ane existing rule by id 
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+  "status" :"success" , 
+  "message" :"rule deleted" , 
+  "ruleId":"-MLndsnds55sq"
+}
+```  
+
+
+Remove ane existing rule by id 
 
 By removing this rule you also  remove all the rule ids in the rule arrays of the webhooks that were linked to this rule  
 <aside class="warning"> By removing the rule you also put all the ruleId inside the devices object that were linked to the group linked to this rule to null </aside>
-*****
-need an API key
+  
+
+* Need an API key  
+
 ### HTTP REQUEST
-```https
+`
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -2102,50 +2167,21 @@ orgId | your organization Id
 ruleId | the rule Id you want to delete  
 
 
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
-```json
-{
-  "status" :"success" , 
-  "message" :"rule deleted" , 
-  "ruleId":"-MLndsnds55sq"}
-```
-
 # Webhooks
 
 ## Get list of webhooks
 
-Get the list of webhooks specific to the organization  
-If you want more information on the webhook object got to the *get a specific webhook by id* endpoint
 
-*****
-Needs an API key
+> ### Headers  
 
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id  
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2190,50 +2226,41 @@ orgId | your organization Id
         }
     }
 }
-```
-
-## get a specific webhook by id
-
-get a specific webhook by his id , only if the organization is the owner of this webhook  
-Data obtained:  
-
-key | value
-----|------
-created_at| (ISO string)
-_id |(unique string)
-is_active |(boolan , if it is to false , the webhook will not be called even if he is linked to a rule)
-last_modified |(ISO string)
-orgId |( string :the organizatio Id of the the organization that created this webhook)
-rules |(optional : an array of rules ids the webhook is linked to , if the webhook is not linked to any rule this array does 
-not exist)
-url |(string: the url to call)  
+```  
 
 
- *****
+Get the list of webhooks specific to the organization  
+If you want more information on the webhook object got to the *get a specific webhook by id* endpoint
 
- Needs an API key
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks
+`
 
 parameter | value
 ----------|------
-orgId | your organization Id
-webhookId | The webhook Id you want to get  
+orgId | your organization Id  
 
 
+## Get a specific webhook by id
 
-### Headers
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2249,36 +2276,52 @@ webhookId | The webhook Id you want to get
         "url": "https://webhook.site/7bb3c3d2-5087-4ef6-842d-b12663e1ff41"
     }
 }
-```
+```  
 
-## Get list of webhooks linked to a rule
 
-Send back the list of rules link to a specific webhook  
-For more informations on the webhook object go to the *Get a specific webhook by id*  endpoint  
+Get a specific webhook by his id , only if the organization is the owner of this webhook  
+Data obtained:  
 
-*****
-Needs an API key
+key | value
+----|------
+created_at| (ISO string)
+_id |(unique string)
+is_active |(boolan , if it is to false , the webhook will not be called even if he is linked to a rule)
+last_modified |(ISO string)
+orgId |( string :the organizatio Id of the the organization that created this webhook)
+rules |(optional : an array of rules ids the webhook is linked to , if the webhook is not linked to any rule this array does 
+not exist)
+url |(string: the url to call)  
+  
+  
+ * Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
-ruleId | The ruleId you want to get the webhooks of  
+webhookId | The webhook Id you want to get  
 
 
-### Headers
+## Get list of webhooks linked to a rule  
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2310,41 +2353,42 @@ ruleId | The ruleId you want to get the webhooks of
         ]
     }
 }
-```
+```  
 
-## Get list of rules link to a specific webhook
 
-Send back the list of rules under a specific webhook  
-For more informations on the rule object go to the *Get a specific rule by id*  endpoint    
-*****
-Note that :  
+Send back the list of webhooks link to a specific rule 
+For more informations on the webhook object go to the *Get a specific webhook by id*  endpoint  
 
-* If there is no rules linked to this  webhook , the list will be empty 
+  
+
 * Needs an API key  
 
-*****
-Needs an API KEY
 
 ### HTTP REQUEST
-```https
+`
 GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/rules
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | The webhook Id you want to get the rules of  
+ruleId | The ruleId you want to get the webhooks of  
 
 
-### Headers
+## Get list of rules link to a specific webhook
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2436,41 +2480,52 @@ webhookId | The webhook Id you want to get the rules of
         }
     ]
 }
-```
+```  
 
-## Create a Webhook
 
-create a webhook in the webhook object on firebase:  
-the key needed is **url** and have to be a valid url
+Send back the list of rules under a specific webhook  
+For more informations on the rule object go to the *Get a specific rule by id*  endpoint    
+Note that :  
 
-*****
-Needs an API key
+* If there is no rules linked to this  webhook , the list will be empty 
+* Needs an API key  
+
+  
+
+* Needs an API KEY  
+
 
 ### HTTP REQUEST
-```https
-POST
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks
-```  
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/rules
+` 
 
 parameter | value
 ----------|------
-orgId | your organization Id  
+orgId | your organization Id
+webhookId | The webhook Id you want to get the rules of  
+
+## Create a Webhook
 
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Body
+> ### Body  
+
 ```json
  {
     "url":"https://mywebsite.com"
 }
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2484,36 +2539,40 @@ orgId | your organization Id
         "id": "-yfrqksaNSBCisyeCM"
     }
 }
-```
+```  
 
-## link a webhook to a specific rule by id
 
-Link a webhook to a specific rue by ids     
-Note that it will create a webhooks array in the rule object containing all the webhooks ids this rule is linked to  
-It will al so create a rule array inside the webhook object conatinig all the rule ids the webhook is linked to  
-*****
-Needs an API key
+Create a webhook in the webhook object on firebase:  
+The key needed is **url** and have to be a valid url
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 POST
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks
+`
 
 parameter | value
 ----------|------
-orgId | your organization Id
-ruleId | the rule you want to link to the webhook
-webhookId | the webhook you want to link to the rule  
+orgId | your organization Id  
 
-### Headers
+
+## Link a webhook to a specific rule by id
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2522,21 +2581,63 @@ webhookId | the webhook you want to link to the rule
         "message": "webhooks - rule link updated"
     }
 }
-```
+```  
+
+
+Link a webhook to a specific rue by id     
+Note that it will create a webhooks array in the rule object containing all the webhooks ids this rule is linked to  
+It will al so create a rule array inside the webhook object conatinig all the rule ids the webhook is linked to  
+  
+
+* Needs an API key  
+
+
+### HTTP REQUEST
+`
+POST
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
+`
+
+parameter | value
+----------|------
+orgId | your organization Id
+ruleId | the rule you want to link to the webhook
+webhookId | the webhook you want to link to the rule  
+
 
 ## Enable / disable a webhook
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "state of the webhook changed"
+}
+```
 
 Enable or disable a webhook by passing as state on or off    
 A disabled webhook will not be called when the rules linked to it are broken  
 
-******
-Needs an API key
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 POST
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/{{state}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -2545,53 +2646,25 @@ webhookId | the webhook you want to enable/disable
 state | the updated state of a webhook , on for enable and off for disable  
 
 
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
-```json
-{
-    "status": "success",
-    "message": "state of the webhook changed"
-}
-```
-
 ## Update a webhook
 
-Update the url of a specific webhook  
-The url must be passed in the body it will be the only key accepted  
-*****
-Needs an APi key
 
-### HTTP REQUEST
-```https
-PATCH
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```  
+> ### Headers  
 
-parameter | value
-----------|------
-orgId | your organization Id
-webhookId | the webhook you want to update  
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
-### Body
+> ### Body  
+
 ```json
 {
   "url":"https://newurl.com"
 }
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2608,39 +2681,41 @@ webhookId | the webhook you want to update
         "url": "https://newurl.com"
     }
 }
-```
+```  
 
-## Unlink a webhook from a rule
 
-Unlink a webhook from a rule.  
-This rule will no longer trigger this webhook when it will be broken  
-The Webhook Id will be deleted for the webhooks arrays inside the rule specified  
-The rule Id given will be deleted from the webhook`s rules array specified  
+Update the url of a specific webhook  
+The url must be passed in the body it will be the only key accepted  
+  
 
-*****
-Needs an API key
+* Needs an APi key  
+
 
 ### HTTP REQUEST
-```https
-DELETE
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
-```  
+`
+PATCH
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
-webhookId | the webhook you want to unlink from the rule
-ruleId | the rule you want to unlink from the webhook  
+webhookId | the webhook you want to update  
 
 
-### Headers
+## Unlink a webhook from a rule
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2649,72 +2724,85 @@ ruleId | the rule you want to unlink from the webhook
         "message": "webhooks - rule link updated"
     }
 }
-```
+```  
+
+
+Unlink a webhook from a rule.  
+This rule will no longer trigger this webhook when it will be broken  
+The Webhook Id will be deleted for the webhooks arrays inside the rule specified  
+The rule Id given will be deleted from the webhook`s rules array specified  
+  
+
+* Needs an API key  
+
+
+### HTTP REQUEST
+`
+DELETE
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
+`
+
+parameter | value
+----------|------
+orgId | your organization Id
+webhookId | the webhook you want to unlink from the rule
+ruleId | the rule you want to unlink from the webhook  
+
 
 ## Delete a webhook
 
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "webhook removed"
+}
+```  
+
+
 Delete a webhook from the webhook object on firebase  
 This webhook will also be deleted from all the webhooks lists in the rules he was linked too  
+  
 
-*****
-Needs an API key
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/rules/{{ruleId}}/webhooks/{{webhookId}}
-```  
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
 webhookId | the webhook you want to delete  
 
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
-```json
-{
-    "status": "success",
-    "message": "webhook removed"
-}
-```
 # Global Webhooks
 
 ## Get list of global webhooks
 
-Get the list of global webhooks specific to the organization  
-If you want more information on the webhook object got to the *get a specific global webhook by id* endpoint  
 
+> ### Headers  
 
-*****
-Needs an API key
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/global
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id  
-
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2737,47 +2825,39 @@ orgId | your organization Id
         }
     }
 }
-```
-
-## Get a specific global webhook by id
-
-Get a specific global webhook by his id , only if the organization is the owner of this global webhook  
-Data obtained:   
-
-* created_at (ISO string)
-* _id (unique string)
-* is_active (boolan , if it is to false , the webhook will not be called even if he is linked to a rule)
-* last_modified (ISO string)
-* orgId ( string :the organizatio Id of the the organization that created this webhook)
-* url (string: the url to call)  
+```  
 
 
+Get the list of global webhooks specific to the organization  
+If you want more information on the webhook object got to the *get a specific global webhook by id* endpoint  
+  
 
- *****
-
- Needs an API key
+* Needs an API key  
 
 ### HTTP REQUEST
-```https
+`
 GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/global
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/global
+`
 
 parameter | value
 ----------|------
-orgId | your organization Id
-webhookId | The webhook you want to get  
+orgId | your organization Id  
 
 
+## Get a specific global webhook by id
 
-### Headers
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2790,41 +2870,56 @@ webhookId | The webhook you want to get
         "url": "https://webhook.site/7bb3c3d2-5087-4ef6-842d-b12663e1ff41"
     }
 }
-```
+```  
 
-## Create a global webhook
 
-create a global webhook in the globalWebhooks object on firebase:  
-the key needed is **url** and have to be a valid url  
-A global webhook will be called at each changes of each device of your organization
-*****
-Needs an API key
+Get a specific global webhook by his id , only if the organization is the owner of this global webhook  
+Data obtained:   
+
+* created_at (ISO string)
+* _id (unique string)
+* is_active (boolan , if it is to false , the webhook will not be called even if he is linked to a rule)
+* last_modified (ISO string)
+* orgId ( string :the organizatio Id of the the organization that created this webhook)
+* url (string: the url to call)  
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
-POST
-https://{{base_url}}/api/v1/org/{{orgId}}/webhooks/global
-```  
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/global
+`
 
 parameter | value
 ----------|------
-orgId | your organization Id  
+orgId | your organization Id
+webhookId | The webhook you want to get  
 
 
+## Create a global webhook
 
-### Headers
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
-```
-### Body 
+```  
+
+> ### Body  
+
 ```json
   {
       "url":"https://mywebsite.com"
   }
-```
-### Response
+```  
+
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2838,20 +2933,61 @@ orgId | your organization Id
         "id": "-yfrqksaNSBCisyeCM"
     }
 }
-```
+```  
+
+
+Create a global webhook in the globalWebhooks object on firebase:  
+The key needed is **url** and have to be a valid url  
+A global webhook will be called at each changes of each device of your organization
+  
+
+* Needs an API key  
+
+
+### HTTP REQUEST
+`
+POST
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/global
+`
+
+parameter | value
+----------|------
+orgId | your organization Id  
+
+
 ## Enable / Disable a global webhook
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "sate of the webhook changed"
+}
+```  
+
 
 Enable or disable a global webhook by passing as state on or off  
 A disabled global webhook will never be called
+  
 
-******
-Needs an API key
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 POST
-http://{{base_url}}/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/global/{{state}}
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}/global/{{state}}
+`
 
 parameter | value
 ----------|------
@@ -2860,55 +2996,25 @@ webhookId | The global webhook you want to update the state of
 state |  The new sate of the webhook you want to update  
 
 
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
-```json
-{
-    "status": "success",
-    "message": "sate of the webhook changed"
-}
-```
-
 ## Update a global webhook
 
-Update the url of a specific global webhook  
-The url must be passed in the body it will be the only key accepted  
-*****
-Needs an APi key
 
-### HTTP REQUEST
-```https
-PATCH
-http://{{base_url}}/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```  
+> ### Headers  
 
-parameter | value
-----------|------
-orgId | your organization Id
-webhookId | The global webhook you want to update  
-
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
-### Body 
+> ### Body  
+
 ```json
   {
       "url":"https://mysuperbwebsite.com"
   }
 ```
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -2922,90 +3028,80 @@ webhookId | The global webhook you want to update
         "url": "https://mysuperbwebsite.com"
     }
 }
-```
+```  
+
+
+Update the url of a specific global webhook  
+The url must be passed in the body it will be the only key accepted  
+  
+
+Needs an APi key
+
+### HTTP REQUEST
+`
+PATCH
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
+`
+
+parameter | value
+----------|------
+orgId | your organization Id
+webhookId | The global webhook you want to update  
 
 ## Delete a global webhook
 
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "webhook removed"
+}
+```  
+
+
 Delete a global webhook from the globalWebhooks object on firebase   
 This global webhook will never be called again  
-*****
-Needs an API key  
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 DELETE
-http://{{base_url}}/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
-```  
+http://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/webhooks/{{webhookId}}
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
 webhookId | The global webhook you want to delete  
 
-
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
-```json
-{
-    "status": "success",
-    "message": "webhook removed"
-}
-```
-
 # Customers
 
 ## Get a single customer by ID
 
-Get a single customer by ID  
-Data obtained :  
 
-key | value
-----|------
-_id |the unique id of the customer
-created_at|ISO string
-last_modified | ISO string
-email |string :email of the customer
-gdpr_compilant |object : contain a ISO date when the user consented the gdpr_compilant
-name |string name of the customer , two customers can have the same name)
-organizationId| (unique string among the organization
-settings |string contain the time zone of the customer
-subscribed |boolan , tell if the user suvbscribed to mails of the b2B service
-subscribed_maintenance| boolan , tell if the user suvbscribed to mails of maintenance the b2B service
-subscribed_reports| boolean , tell if the user subscribed to mails of reports of the b2B service
-subscribed_alerts | boolean , tell if the user subscribed to mails of alerts of the b2B service  
+> ### Headers  
 
-
-
-******
-Needs an API key
-
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id
-customerId | the customer you want to get  
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "Succes",
@@ -3030,44 +3126,55 @@ customerId | the customer you want to get
         "subscribed_reports": true
     }
 }
-```
-
-## Get Customers by role
-
-Get a customer by his role in the organization  
-There is 3 kinds of roles only  :  
-
-* admins
-* technicians
-* viewers  
+```  
 
 
-If you pass another role than this 3 the server will throw an error  
-If there is no customers to send , the server will send an empty list  
+Get a single customer by ID  
+Data obtained :  
 
-*****
-Needs an API key
+key | value
+----|------
+_id |the unique id of the customer
+created_at|ISO string
+last_modified | ISO string
+email |string :email of the customer
+gdpr_compilant |object : contain a ISO date when the user consented the gdpr_compilant
+name |string name of the customer , two customers can have the same name)
+organizationId| (unique string among the organization
+settings |string contain the time zone of the customer
+subscribed |boolan , tell if the user suvbscribed to mails of the b2B service
+subscribed_maintenance| boolan , tell if the user suvbscribed to mails of maintenance the b2B service
+subscribed_reports| boolean , tell if the user subscribed to mails of reports of the b2B service
+subscribed_alerts | boolean , tell if the user subscribed to mails of alerts of the b2B service  
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/roles/{{role}}
-```  
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}
+`
 
 parameter | value
 ----------|------
 orgId | your organization Id
-role | The list of customer's role you want to get  
+customerId | the customer you want to get  
+
+## Get Customers by role
 
 
-### Headers
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "succes",
@@ -3098,7 +3205,7 @@ role | The list of customer's role you want to get
         {
             "_id": "8v17RIlUGATqIVDTT2T7s6N9d0X2",
             "created_at": "2020-06-30T15:42:25.017Z",
-            "customer_role": "manufacturing",
+            "customer_role": "role",
             "email": "gilad+3@auraair.io",
             "last_modified": "2020-06-30T15:42:25.017Z",
             "name": "israel israeli",
@@ -3128,52 +3235,49 @@ role | The list of customer's role you want to get
         }
     ]
 }
-```
-
-## Create a customer to your organization
-
-Give the ability to create a customer for your organization :
-You need to provide 4 keys :  
-
-key | value
-----|------
-email |(a valid string email not already in use by another customer)
-name |(a valid string name for your customer)
-role |(a string among this three : admin , technician , viewer)
-time_zone |( a integer between -12 and 12)  
+```  
 
 
-The customer object must be send in the body under the customer key  
-You can also add a key **send_mail** and put the value true to send a mail to the created customer  
+Get a customer by his role in the organization  
+There is 3 kinds of roles only  :  
+
+* admins
+* technicians
+* viewers  
 
 
-In the response you will get the customer object created under the key **data.customer** (for more information on it go to the *Get a single customer by ID* endpoints)  
-
-You will also get the password of the created user under the key **data.password**   
-
-If you decide to send mail to the customer , the login informations will be in it (email and password)  
+If you pass another role than this 3 the server will throw an error  
+If there is no customers to send , the server will send an empty list  
   
-******
-Needs an API key
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
-POST
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers
-```  
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/roles/{{role}}
+` 
 
 parameter | value
 ----------|------
-orgId | your organization Id  
+orgId | your organization Id
+role | The list of customer's role you want to get  
 
 
-### Headers
+## Create a customer to your organization
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
-```
-### Body
+```  
+
+> ### Body  
+
 ```json
   {
     "customer":{
@@ -3186,7 +3290,8 @@ orgId | your organization Id
 }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -3212,9 +3317,69 @@ orgId | your organization Id
         "password": "feidhca"
     }
 }
-```
+```  
+
+
+Give the ability to create a customer for your organization :
+You need to provide 4 keys :  
+
+key | value
+----|------
+email |(a valid string email not already in use by another customer)
+name |(a valid string name for your customer)
+role |(a string among this three : admin , technician , viewer)
+time_zone |( a integer between -12 and 12)  
+
+
+The customer object must be send in the body under the customer key  
+You can also add a key **send_mail** and put the value true to send a mail to the created customer  
+
+
+In the response you will get the customer object created under the key **data.customer** (for more information on it go to the *Get a single customer by ID* endpoints)  
+
+You will also get the password of the created user under the key **data.password**   
+
+If you decide to send mail to the customer , the login informations will be in it (email and password)  
+  
+  
+
+* Needs an API key  
+
+
+### HTTP REQUEST
+`
+POST
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers
+`
+
+parameter | value
+----------|------
+orgId | your organization Id  
 
 ## Change customer Role
+
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+    "status": "success",
+    "message": "Customer role changed",
+    "data": {
+        "old_role": "viewer",
+        "new_role": "admin"
+    }
+}
+```  
+
 
 Give the ability to update the customer role
 The 3 possible roles are :  
@@ -3228,15 +3393,16 @@ The 3 possible roles are :
 You must pass the role in the url as a parameter   
 If the customer have already this role the server will send back an error   
 The customer must be under your organization  
+  
 
-*****
-Needs an API key
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 PATCH
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}/roles/{{role}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -3245,26 +3411,26 @@ customerId | the customer you want to update the role
 role | the new role of the customer  
 
 
-### Headers
+## Delete a customer by Id
+
+
+> ### Headers  
+
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
-    "message": "Customer role changed",
-    "data": {
-        "old_role": "viewer",
-        "new_role": "admin"
-    }
+    "message": "customer deleted"
 }
-```
+```  
 
-## Delete a customer by Id
 
 Give you the ability to delete a customer by his Id  
 Note that:  
@@ -3272,14 +3438,16 @@ Note that:
 * API keys of admins can delete viewers and technicians
 * API keys of owners can delete viewers technicians and admins  
 
-*****
-Needs an API key
+  
+
+* Needs an API key  
+
 
 ### HTTP REQUEST
-```https
+`
 DELETE
 https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}/customers/{{customerId}}
-```  
+`
 
 parameter | value
 ----------|------
@@ -3287,67 +3455,21 @@ orgId | your organization Id
 customerId | the customer you want to delete  
 
 
-
-### Headers
-```json
-  {
-    "Authorization": "Bearer API_KEY"
-  }
-```
-
-### Response
-```json
-{
-    "status": "success",
-    "message": "customer deleted"
-}
-```
-
 # Organizations 
 
 ## Get a single organization by ID
 
-Give your organizations informations 
-The organization object will get the following keys :  
 
-key | value
-----|------
-id| a string , the id of the organization
-admins | an object , the list of admins Id of the organization
-technicians| an object , the list of technicians Id of the organization
-viewers| an object , the list of viewers Id of the organization
-devices| an object ,  the list of devices of the organization
-locations| an object ,  the list of locations of the organization
-floors| an object ,  the list of floors of the organization
-groups| an object ,  the list of groups of the organization
-last_modified| an ISO date , the last time , the last time the organization object was modified
-rules | an object , the list of rules Id of the organization,
-logo_url | a string , the url of the pictures of your logo
-name | a string , the name of the organization  
+> ### Headers  
 
-*****
-needs an API key
-
-### HTTP REQUEST
-```https
-GET
-https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}
-```  
-
-parameter | value
-----------|------
-orgId | your organization Id  
-
-
-
-### Headers
 ```json
   {
     "Authorization": "Bearer API_KEY"
   }
 ```
 
-### Response
+> ### Response  
+
 ```json
 {
     "status": "success",
@@ -3594,6 +3716,40 @@ orgId | your organization Id
     }
 }
 ```  
+  
+
+Give your organizations informations 
+The organization object will get the following keys :  
+
+key | value
+----|------
+id| a string , the id of the organization
+admins | an object , the list of admins Id of the organization
+technicians| an object , the list of technicians Id of the organization
+viewers| an object , the list of viewers Id of the organization
+devices| an object ,  the list of devices of the organization
+locations| an object ,  the list of locations of the organization
+floors| an object ,  the list of floors of the organization
+groups| an object ,  the list of groups of the organization
+last_modified| an ISO date , the last time , the last time the organization object was modified
+rules | an object , the list of rules Id of the organization,
+logo_url | a string , the url of the pictures of your logo
+name | a string , the name of the organization  
+  
+
+* Needs an API key  
+
+
+### HTTP REQUEST
+`
+GET
+https://aura-b2b-rest.web.app/api/v1/org/{{orgId}}
+`  
+
+parameter | value
+----------|------
+orgId | your organization Id  
+
 
 
 
