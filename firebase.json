@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "aura-b2b-apidoc",
     "public": "build",
     "ignore": [
       "firebase.json",

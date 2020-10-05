@@ -181,8 +181,11 @@ orgId | your organization Id
 Retrieve all locations under organization  
 the data is an object and each key/vallue is a locations 
 if you want more informations on the location object go to the *Get a single location by ID* endpoint
-*******
-needs an API key
+ 
+
+* Needs an API key 
+
+
 ### HTTP REQUEST
 `
 GET
@@ -3750,7 +3753,3 @@ parameter | value
 ----------|------
 orgId | your organization Id  
 
-
-
-
-![Image of Yaktocat](https://media.tenor.com/images/1afc4475062692a2b209819936f81626/tenor.gif)
