@@ -1249,7 +1249,7 @@ deviceId | the device Id you want to update
         },
         "co2": {
             "value": 417,
-            "units": "ppb"
+            "units": "ppm"
         },
         "voc": {
             "value": 38,
@@ -1270,7 +1270,7 @@ pm25 |(bigger particle ug/m3)
 co |(carbon monoxyde ppm)
 humidity |(in percentage)
 temperature |(in °C)
-co2 |(in ppb)
+co2 |(in ppm)
 voc |(organic component in ppb)  
 
 
@@ -2793,8 +2793,9 @@ webhookId | the webhook you want to delete
 
 # Global Webhooks
 
-## Get list of global webhooks
+<aside class="warning">This endpoints are not yet implmented </aside>
 
+## Get list of global webhooks
 
 > ### Headers  
 
@@ -2830,6 +2831,7 @@ webhookId | the webhook you want to delete
 }
 ```  
 
+<aside class="warning">This endpoints are not yet implmented </aside>  
 
 Get the list of global webhooks specific to the organization  
 If you want more information on the webhook object got to the *get a specific global webhook by id* endpoint  
@@ -2875,7 +2877,8 @@ orgId | your organization Id
 }
 ```  
 
-
+<aside class="warning">This endpoints are not yet implmented </aside>  
+  
 Get a specific global webhook by his id , only if the organization is the owner of this global webhook  
 Data obtained:   
 
@@ -2937,7 +2940,8 @@ webhookId | The webhook you want to get
     }
 }
 ```  
-
+<aside class="warning">This endpoints are not yet implmented </aside>  
+  
 
 Create a global webhook in the globalWebhooks object on firebase:  
 The key needed is **url** and have to be a valid url  
@@ -2977,8 +2981,9 @@ orgId | your organization Id
     "message": "sate of the webhook changed"
 }
 ```  
-
-
+<aside class="warning">This endpoints are not yet implmented </aside>  
+  
+ 
 Enable or disable a global webhook by passing as state on or off  
 A disabled global webhook will never be called
   
@@ -3032,7 +3037,8 @@ state |  The new sate of the webhook you want to update
     }
 }
 ```  
-
+<aside class="warning">This endpoints are not yet implmented </aside>  
+ 
 
 Update the url of a specific global webhook  
 The url must be passed in the body it will be the only key accepted  
@@ -3070,6 +3076,7 @@ webhookId | The global webhook you want to update
     "message": "webhook removed"
 }
 ```  
+<aside class="warning">This endpoints are not yet implmented </aside>  
 
 
 Delete a global webhook from the globalWebhooks object on firebase   
