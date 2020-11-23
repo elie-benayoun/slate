@@ -1313,6 +1313,7 @@ sensor (optional)| list of sensors you want to get the value off
 
 ```json 
 {
+    "activate" : "on" ,
     "startTime":"8:00",
     "endTime":"15:00"
 }
@@ -1335,17 +1336,20 @@ sensor (optional)| list of sensors you want to get the value off
 Set device mode (call firmware setSystemMode):  
 The mode passed as a parameter can be  
 
-* booster
-* normal  
+* high
+* low
+* auto
+* night
 
-Normal mode will just stop the booster mode   
-About the booster mode , you will have to provide informations in the body about the start time and the end time   
+Auto mode will just stop the high mode and the low mode  
+About the night mode , you will have to provide informations in the body about the start time and the end time as well as information about activation   
 Your body should in such case have these keys :  
 
 key | value 
 ----|------
 startTime | time hh:mm
 endTime | time hh:mm  
+activation | if the night mode have to be deactive , off , or activate , on
 
 
 The hours should be between 0 and 24 and the minutes should be between 0 and 59  
@@ -1354,7 +1358,11 @@ Note that :
 
 * the start time must be before the end time 
 * the time of activity of the booster mode is calculated by slice of half an hour you have know that the time difference between the start time and the end time will be rounded tot  the nearest half an hour slice for the booster mode  
-  
+* The mode that you activate will override the old one , unles it is the night  mode
+* The night mode is a special he can be activated only for a specific time 
+* If you activate the night mode for a futur period of time , it will start automaticaly at this time
+, you can also deactivate it whenever you want by passing off to the activate key in the body
+* If you try to set the mode of the device while she is in night mode , the mode will be saved but will not start until the end of the night mode (or until his deactivation)
 
 * Needs an API key   
 
