@@ -1379,6 +1379,62 @@ orgId | your organization Id
 deviceId | the device Id you want to get the sensor
 mode | the mode you want to set the device in (can be booster or normal)  
 
+## Get Device Mode  
+  
+
+> ### Headers  
+
+```json
+  {
+    "Authorization": "Bearer API_KEY"
+  }
+```
+
+> ### Response  
+
+```json
+{
+    "status": "Success",
+    "data": {
+        "actualMode": "night",
+        "nextMode" : "high"
+    }
+}
+
+```  
+Give you the ability to get the current mode   
+There is 4 different modes :   
+
+ * high
+ * low
+ * auto
+ * night  
+
+
+Check *set device mode* endpoint to get more information about the modes  
+
+The answer will be in the **data** key and will contain one or two keys :  
+
+key | value 
+----|------
+actualMode | the actual mode of the device
+nextMode | Only if actualMode value is **night** , the value will be the mode that will run after the night mode will be over   
+  
+
+
+ * Needs an Api Key
+
+### HTTP REQUEST
+`
+GET
+https://{{base_url}}/api/v1/org/{{orgId}}/devices/{{deviceId}}/mode
+`  
+
+parameter | value
+----------|------
+orgId | your organization Id
+deviceId | the device Id you want to get the mode  
+
 
 ## Set Device Timezone  
   
@@ -1438,30 +1494,64 @@ timezone | the mode you want to set the timezone in (can be an integer between -
 
 ```json
 {
-    "status": "Configured successfully",
-    "message": {
-        "cmd": "VarReturn",
-        "name": "EEPROMContent",
-        "result": "{\"timezone-data\":{\"timezone\":3},\"user-reset-data\":{\"counter\":1}}",
-        "coreInfo": {
-            "name": "NS20220077",
-            "last_heard": "2020-09-15T09:41:24.091Z",
-            "connected": true,
-            "last_handshake_at": "2020-09-14T15:09:55.470Z",
-            "deviceID": "25002e001147383531363134",
-            "product_id": 9494
-        }
-    },
-    "data": {
-        "device": "25002e001147383531363134"
-    }
+  "night-mode":{
+    "is-defined":true
+    "req-new-timer-def":true
+    "start-time":"16:27"
+    "timer-length":11
+    "tmp-timer-length":4.033333302
+  }
+  "active-mode":{
+    "current":3
+    "next":1
+  }
+  "panic-reset":{
+    "panic-counter":1
+    "last-panic-event":1606224033
+  }
+  "user-reset":{
+    "reset-counter":1
+    "last-reset-event":1606215867
+  }
+  "led-switch":{
+    "state":true
+  }
+  "timezone":2
 }
 ```  
 
 
-Give the ability to get the **EEPROM** of a specific device by id
+Give the ability to get the **EEPROM** of a specific device by id  
 
+The EEPROM is a place were can be stored small amounts of data that will persist even after the device resets or if the device is powered off.
+
+here is a structure of the EEPROM :  
+
+ * **night-mode** :  
+   * **is-defined** : boolean , is the night mode is defined (defined with start time and end time but maybe not active now)
+   * **req-new-timer-def** : system flag
+   * **start-time** : The start time of the night mode
+   * **timer-length** : How much time the night mode last (counted in half odf hours) 
+   * **tmp-timer-length** : the number of hours remaining in the night mode
+ * **active-mode** : 
+
+    * **current** : the current active mode , 0 is auto , 1 is high , 2 is low and 3 is night
+    * **next** : the next mode if night is active else it will be -1
+ * **panic-reset** :  
+    * **panic-counter** : counter of panic event that happened 
+    * **last-panic-event** : timestamp of the last panic event
+
+ * **user-reset** :  
+    * **reset-counter** : counter of reset event that happened 
+    * **last-reset-event** : timestamp of the last reset event
+
+ * **led-switch** :  
+  * **state** : the actual state of the led , true if on , false if off
+
+* **timezone** : The timezone of the device  
   
+    
+And this endpoint   
 
 * Needs an API key  
 
