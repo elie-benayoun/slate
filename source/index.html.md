@@ -1356,9 +1356,9 @@ The hours should be between 0 and 24 and the minutes should be between 0 and 59
 
 Note that :  
 
-* the time of activity of the night mode is calculated by slice of half an hour you have know that the time difference between the start time and the end time will be rounded tot  the nearest half an hour slice for the night mode  
-* The mode that you activate will override the old one , unles it is the night  mode
-* The night mode is a special he can be activated only for a specific time 
+* the time of activity of the night mode is calculated by slice of half an hour you have know that the time difference between the start time and the end time have to be between 1 and 12 hours and can only be slice of 30 minutes
+* The mode that you activate will override the old one , unless it is the night  mode
+* The night mode is a special mode he can be activated only for a specific time 
 * If you activate the night mode for a futur period of time , it will start automaticaly at this time
 , you can also deactivate it whenever you want by passing off to the activate key in the body
 * If you try to set the mode of the device while she is in night mode , the mode will be saved but will not start until the end of the night mode (or until his deactivation)
